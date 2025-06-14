@@ -1,0 +1,1456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SISA | Siegen Indian Student Association</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Light Theme */
+            --light-bg: #ffffff;
+            --light-text: #121212;
+            --light-card: #f8f9fa;
+            --light-accent: #ff6b35;
+            --light-gray: #e9ecef;
+            --light-border: #dee2e6;
+            
+            /* Dark Theme */
+            --dark-bg: #121212;
+            --dark-text: #f8f9fa;
+            --dark-card: #1e1e1e;
+            --dark-accent: #ff8c5a;
+            --dark-gray: #2d2d2d;
+            --dark-border: #343a40;
+            
+            /* Active Theme */
+            --bg: var(--light-bg);
+            --text: var(--light-text);
+            --card: var(--light-card);
+            --accent: var(--light-accent);
+            --gray: var(--light-gray);
+            --border: var(--light-border);
+            
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 12px 32px rgba(0, 0, 0, 0.15);
+        }
+
+        .dark-mode {
+            --bg: var(--dark-bg);
+            --text: var(--dark-text);
+            --card: var(--dark-card);
+            --accent: var(--dark-accent);
+            --gray: var(--dark-gray);
+            --border: var(--dark-border);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.4s ease, color 0.4s ease, transform 0.4s ease;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        /* Modern Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(var(--bg-rgb), 0.96);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            padding: 1.2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            padding: 0.8rem 5%;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--bg);
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .logo-text {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 1.8rem;
+            color: var(--text);
+            letter-spacing: -0.5px;
+        }
+
+        .logo-highlight {
+            color: var(--accent);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        nav ul li a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.05rem;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: var(--transition);
+        }
+
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--accent);
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover:after {
+            width: 100%;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+
+        .theme-toggle {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-left: 2rem;
+        }
+
+        .toggle-btn {
+            width: 50px;
+            height: 26px;
+            background: var(--gray);
+            border-radius: 50px;
+            position: relative;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .toggle-btn:after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 20px;
+            height: 20px;
+            background: var(--bg);
+            border-radius: 50%;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        .dark-mode .toggle-btn:after {
+            left: calc(100% - 23px);
+            content: '🌙';
+        }
+
+        .light-mode .toggle-btn:after {
+            content: '☀️';
+        }
+
+        .lang-toggle {
+            background: transparent;
+            border: none;
+            color: var(--text);
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem;
+            border-radius: 6px;
+            transition: var(--transition);
+        }
+
+        .lang-toggle:hover {
+            background: rgba(var(--accent-rgb), 0.1);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            padding: 0 2rem;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            z-index: 2;
+            margin-top: 80px;
+        }
+
+        .hero h1 {
+            font-weight: 900;
+            font-size: 4.5rem;
+            color: #ffffff;
+            letter-spacing: -1.5px;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-highlight {
+            color: var(--accent);
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero-highlight:after {
+            content: '';
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            width: 100%;
+            height: 15px;
+            background: rgba(255, 107, 53, 0.3);
+            z-index: -1;
+        }
+
+        .hero p {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 1.4rem;
+            margin-bottom: 2.5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 1s ease-out 0.2s forwards;
+            opacity: 0;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--accent);
+            color: #ffffff;
+            text-decoration: none;
+            padding: 1.2rem 3rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            transition: var(--transition);
+            border: 2px solid var(--accent);
+            animation: fadeInUp 1s ease-out 0.4s forwards;
+            opacity: 0;
+        }
+
+        .cta-button:hover {
+            background: transparent;
+            color: var(--accent);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 107, 53, 0.3);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 1.5rem;
+            animation: bounce 2s infinite;
+        }
+
+        /* Section Styling */
+        section {
+            padding: 8rem 5%;
+        }
+
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 5px;
+            background: var(--accent);
+            border-radius: 10px;
+        }
+
+        .section-subtitle {
+            font-size: 1.6rem;
+            color: var(--text);
+            opacity: 0.8;
+            margin-bottom: 4rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        /* About Section */
+        .about {
+            background-color: var(--bg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-content {
+            display: flex;
+            flex-direction: column;
+            gap: 5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Modern Card Design */
+        .card {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .card h3 {
+            font-size: 1.8rem;
+            color: var(--text);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .card h3 i {
+            color: var(--accent);
+            margin-right: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .card p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: var(--text);
+            opacity: 0.9;
+        }
+
+        /* Establishment Card */
+        .establishment-card {
+            background: linear-gradient(135deg, var(--accent) 0%, #ff8c5a 100%);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            margin: 2rem 0;
+            color: white;
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
+        }
+
+        .establishment-card h4 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .establishment-card p {
+            font-size: 1.2rem;
+            margin-bottom: 0;
+            opacity: 0.9;
+        }
+
+        /* Vision Grid */
+        .vision-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .vision-card {
+            background: var(--card);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .vision-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--accent);
+        }
+
+        .vision-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .vision-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: var(--bg);
+            font-size: 2rem;
+        }
+
+        .vision-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            color: var(--text);
+        }
+
+        .vision-card p {
+            color: var(--text);
+            opacity: 0.8;
+        }
+
+        /* Services Section */
+        .services {
+            background-color: var(--bg);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .service-card {
+            background: var(--card);
+            border-radius: 16px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--accent);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: var(--bg);
+            font-size: 2rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .service-card p {
+            color: var(--text);
+            opacity: 0.8;
+        }
+
+        /* Board Section */
+        .board {
+            background-color: var(--bg);
+            color: var(--text);
+            position: relative;
+        }
+
+        .board .section-title {
+            color: var(--text);
+        }
+
+        .board-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .board-card {
+            background: var(--card);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: var(--transition);
+            padding: 2.5rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            position: relative;
+        }
+
+        .board-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--accent);
+        }
+
+        .board-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .board-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: var(--accent);
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--bg);
+            font-size: 3rem;
+            font-weight: 700;
+            border: 4px solid var(--bg);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .board-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+        }
+
+        .board-role {
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .board-card p {
+            color: var(--text);
+            opacity: 0.8;
+            font-size: 1rem;
+        }
+
+        /* Events Section */
+        .events {
+            background-color: var(--bg);
+        }
+
+        .events-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .event-card {
+            background: var(--card);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid var(--border);
+        }
+
+        .event-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .event-image {
+            height: 220px;
+            position: relative;
+            overflow: hidden;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .event-date {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--accent);
+            color: var(--bg);
+            padding: 0.8rem 1.2rem;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            z-index: 2;
+        }
+
+        .event-content {
+            padding: 2rem;
+        }
+
+        .event-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 1rem;
+        }
+
+        .event-details {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            color: var(--text);
+            opacity: 0.8;
+        }
+
+        .event-details i {
+            margin-right: 0.8rem;
+            color: var(--accent);
+        }
+
+        /* Gallery Section */
+        .gallery {
+            background-color: var(--bg);
+        }
+
+        .gallery .section-title {
+            color: var(--text);
+        }
+
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .gallery-item {
+            height: 250px;
+            background: var(--gray);
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+            transition: var(--transition);
+            background-size: cover;
+            background-position: center;
+            box-shadow: var(--shadow);
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.03);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .gallery-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover::before {
+            opacity: 1;
+        }
+
+        .gallery-item::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.8);
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 107, 53, 0.8);
+            border-radius: 50%;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover::after {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .gallery-item i {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.8);
+            color: white;
+            font-size: 1.5rem;
+            z-index: 2;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover i {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--card);
+            color: var(--text);
+            padding: 4rem 5% 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-col h4 {
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
+
+        .footer-col p, .footer-col li {
+            color: var(--text);
+            opacity: 0.8;
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-col ul li a {
+            color: var(--text);
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            opacity: 0.8;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--accent);
+            transform: translateX(5px);
+            opacity: 1;
+        }
+
+        .footer-col ul li a i {
+            color: var(--accent);
+            font-size: 0.9rem;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--gray);
+            border-radius: 50%;
+            color: var(--text);
+            transition: var(--transition);
+        }
+
+        .social-icons a:hover {
+            background: var(--accent);
+            color: var(--bg);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            color: var(--text);
+            opacity: 0.6;
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-20px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 1rem;
+                gap: 1rem;
+            }
+            
+            nav ul {
+                gap: 1.5rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .theme-toggle {
+                margin-left: 0;
+                margin-top: 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Modern Header -->
+    <header id="header">
+        <a href="#home" class="logo">
+            <div class="logo-icon">S</div>
+            <div class="logo-text">S<span class="logo-highlight">I</span>SA</div>
+        </a>
+        <nav>
+            <ul>
+                <li><a href="#about" data-en="About" data-de="Über uns">About</a></li>
+                <li><a href="#services" data-en="Services" data-de="Dienste">Services</a></li>
+                <li><a href="#board" data-en="Leadership" data-de="Leitung">Leadership</a></li>
+                <li><a href="#events" data-en="Events" data-de="Veranstaltungen">Events</a></li>
+                <li><a href="#gallery" data-en="Gallery" data-de="Galerie">Gallery</a></li>
+                <li><a href="#contact" data-en="Contact" data-de="Kontakt">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="theme-toggle">
+            <button class="lang-toggle" id="langToggle">
+                <i class="fas fa-globe"></i>
+                <span data-en="EN" data-de="DE">EN</span>
+            </button>
+            <div class="toggle-btn" id="themeToggle"></div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1><span class="hero-highlight" data-en="Siegen Indian" data-de="Siegen Indische"></span> <span data-en="Student Association" data-de="Studentenvereinigung"></span></h1>
+            <p data-en="Connecting Indian students in Siegen since 2025. Fostering cultural exchange and creating unforgettable experiences." data-de="Vernetzung indischer Studenten in Siegen seit 2025. Förderung des kulturellen Austauschs und Schaffung unvergesslicher Erfahrungen.">Connecting Indian students in Siegen since 2025. Fostering cultural exchange and creating unforgettable experiences.</p>
+            <a href="#about" class="cta-button" data-en="Discover Our Community" data-de="Entdecken Sie unsere Gemeinschaft">Discover Our Community</a>
+        </div>
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <h2 class="section-title" data-en="About SISA" data-de="Über SISA">About SISA</h2>
+        <p class="section-subtitle" data-en="Our story and vision" data-de="Unsere Geschichte und Vision">Our story and vision</p>
+        
+        <div class="about-content">
+            <div class="card">
+                <h3><i class="fas fa-bullseye"></i> <span data-en="Our Mission" data-de="Unsere Mission">Our Mission</span></h3>
+                <p data-en="Founded in 2025, SISA is the vibrant heart of the Indian student community at the University of Siegen. We're a passionate group dedicated to creating a home away from home for students from India." data-de="Gegründet im Jahr 2025 ist SISA das lebendige Herz der indischen Studentengemeinschaft an der Universität Siegen. Wir sind eine leidenschaftliche Gruppe, die sich dafür einsetzt, ein Zuhause fern der Heimat für Studenten aus Indien zu schaffen.">Founded in 2025, SISA is the vibrant heart of the Indian student community at the University of Siegen. We're a passionate group dedicated to creating a home away from home for students from India.</p>
+                <p data-en="Our mission is to bridge cultures, provide academic support, and create memorable experiences that enrich your student life in Germany." data-de="Unsere Mission ist es, Kulturen zu verbinden, akademische Unterstützung zu bieten und unvergessliche Erfahrungen zu schaffen, die Ihr Studentenleben in Deutschland bereichern.">Our mission is to bridge cultures, provide academic support, and create memorable experiences that enrich your student life in Germany.</p>
+                
+                <div class="establishment-card">
+                    <h4 data-en="Established in 2025" data-de="Gegründet im Jahr 2025">Established in 2025</h4>
+                    <p data-en="With 25 founding members and a vision for cultural connection" data-de="Mit 25 Gründungsmitgliedern und einer Vision für kulturelle Verbindung">With 25 founding members and a vision for cultural connection</p>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3><i class="fas fa-rocket"></i> <span data-en="Our Vision" data-de="Unsere Vision">Our Vision</span></h3>
+                <p data-en="We're building the future of Indian student life in Siegen with these core goals:" data-de="Wir gestalten die Zukunft des indischen Studentenlebens in Siegen mit diesen Kernzielen:">We're building the future of Indian student life in Siegen with these core goals:</p>
+                
+                <div class="vision-grid">
+                    <div class="vision-card">
+                        <div class="vision-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h4 data-en="Industry Partnerships" data-de="Industriepartnerschaften">Industry Partnerships</h4>
+                        <p data-en="Connecting students with leading companies for internships and career opportunities" data-de="Vernetzung von Studenten mit führenden Unternehmen für Praktika und Karrieremöglichkeiten">Connecting students with leading companies for internships and career opportunities</p>
+                    </div>
+                    
+                    <div class="vision-card">
+                        <div class="vision-icon">
+                            <i class="fas fa-globe-europe"></i>
+                        </div>
+                        <h4 data-en="Cultural Exchange" data-de="Kultureller Austausch">Cultural Exchange</h4>
+                        <p data-en="Promoting Indian culture while embracing German traditions through collaborative events" data-de="Förderung der indischen Kultur und gleichzeitige Einbeziehung deutscher Traditionen durch gemeinsame Veranstaltungen">Promoting Indian culture while embracing German traditions through collaborative events</p>
+                    </div>
+                    
+                    <div class="vision-card">
+                        <div class="vision-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h4 data-en="Academic Excellence" data-de="Akademische Exzellenz">Academic Excellence</h4>
+                        <p data-en="Supporting student success through mentorship programs and study groups" data-de="Unterstützung des studentischen Erfolgs durch Mentoring-Programme und Lerngruppen">Supporting student success through mentorship programs and study groups</p>
+                    </div>
+                    
+                    <div class="vision-card">
+                        <div class="vision-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h4 data-en="Community Building" data-de="Gemeinschaftsbildung">Community Building</h4>
+                        <p data-en="Creating a supportive network for Indian students in Siegen" data-de="Aufbau eines unterstützenden Netzwerks für indische Studenten in Siegen">Creating a supportive network for Indian students in Siegen</p>
+                    </div>
+                    
+                    <div class="vision-card">
+                        <div class="vision-icon">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <h4 data-en="Cultural Center" data-de="Kulturzentrum">Cultural Center</h4>
+                        <p data-en="Establishing a dedicated space for Indian cultural activities" data-de="Einrichtung eines eigenen Raums für indische Kulturveranstaltungen">Establishing a dedicated space for Indian cultural activities</p>
+                    </div>
+                    
+                    <div class="vision-card">
+                        <div class="vision-icon">
+                            <i class="fas fa-hands-helping"></i>
+                        </div>
+                        <h4 data-en="Support System" data-de="Unterstützungssystem">Support System</h4>
+                        <p data-en="Providing comprehensive assistance for new students arriving in Germany" data-de="Umfassende Unterstützung für neue Studenten in Deutschland">Providing comprehensive assistance for new students arriving in Germany</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <h2 class="section-title" data-en="Our Services" data-de="Unsere Dienste">Our Services</h2>
+        <p class="section-subtitle" data-en="How we support our community" data-de="Wie wir unsere Gemeinschaft unterstützen">How we support our community</p>
+        
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-user-friends"></i>
+                </div>
+                <h3 data-en="Orientation Program" data-de="Einführungsprogramm">Orientation Program</h3>
+                <p data-en="Comprehensive welcome program for new students including airport pickup and accommodation assistance" data-de="Umfassendes Willkommensprogramm für neue Studenten, inklusive Flughafenabholung und Hilfe bei der Unterkunftssuche">Comprehensive welcome program for new students including airport pickup and accommodation assistance</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-book"></i>
+                </div>
+                <h3 data-en="Academic Support" data-de="Akademische Unterstützung">Academic Support</h3>
+                <p data-en="Study groups, exam preparation workshops, and tutoring sessions" data-de="Lerngruppen, Prüfungsvorbereitungsworkshops und Nachhilfe">Study groups, exam preparation workshops, and tutoring sessions</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-briefcase"></i>
+                </div>
+                <h3 data-en="Career Development" data-de="Karriereentwicklung">Career Development</h3>
+                <p data-en="Resume workshops, interview preparation, and networking events" data-de="Lebenslauf-Workshops, Vorbereitung auf Vorstellungsgespräche und Networking-Veranstaltungen">Resume workshops, interview preparation, and networking events</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-utensils"></i>
+                </div>
+                <h3 data-en="Cultural Events" data-de="Kulturelle Veranstaltungen">Cultural Events</h3>
+                <p data-en="Celebration of Indian festivals with traditional food, music, and performances" data-de="Feier indischer Feste mit traditionellem Essen, Musik und Aufführungen">Celebration of Indian festivals with traditional food, music, and performances</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-passport"></i>
+                </div>
+                <h3 data-en="Visa Assistance" data-de="Visahilfe">Visa Assistance</h3>
+                <p data-en="Guidance with visa extensions, work permits, and documentation" data-de="Beratung bei Visumverlängerungen, Arbeitserlaubnissen und Dokumentation">Guidance with visa extensions, work permits, and documentation</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-hands-helping"></i>
+                </div>
+                <h3 data-en="Mentorship Program" data-de="Mentoring-Programm">Mentorship Program</h3>
+                <p data-en="Pairing new students with experienced seniors for guidance" data-de="Vermittlung neuer Studenten an erfahrene Ältere zur Betreuung">Pairing new students with experienced seniors for guidance</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Board Section -->
+    <section id="board" class="board">
+        <h2 class="section-title" data-en="Our Leadership" data-de="Unsere Leitung">Our Leadership</h2>
+        <p class="section-subtitle" data-en="The team driving our vision forward" data-de="Das Team, das unsere Vision vorantreibt">The team driving our vision forward</p>
+        
+        <h3 class="section-subtitle" style="text-align: center; color: var(--accent); margin-bottom: 3rem;" data-en="Advisory Board" data-de="Beirat">Advisory Board</h3>
+        <div class="board-container">
+            <div class="board-card">
+                <div class="board-image">PD</div>
+                <h3>Prof. Dr. Anil Sharma</h3>
+                <div class="board-role" data-en="Faculty Advisor" data-de="Fakultätsberater">Faculty Advisor</div>
+                <p data-en="Professor of Computer Science with 15 years of experience mentoring international students" data-de="Professor für Informatik mit 15 Jahren Erfahrung in der Betreuung internationaler Studierender">Professor of Computer Science with 15 years of experience mentoring international students</p>
+            </div>
+            
+            <div class="board-card">
+                <div class="board-image">RS</div>
+                <h3>Dr. Riya Singh</h3>
+                <div class="board-role" data-en="Cultural Coordinator" data-de="Kulturkoordinator">Cultural Coordinator</div>
+                <p data-en="Expert in intercultural communication and event planning" data-de="Expertin für interkulturelle Kommunikation und Veranstaltungsplanung">Expert in intercultural communication and event planning</p>
+            </div>
+            
+            <div class="board-card">
+                <div class="board-image">VM</div>
+                <h3>Vikram Mehta</h3>
+                <div class="board-role" data-en="Industry Liaison" data-de="Industriekontakt">Industry Liaison</div>
+                <p data-en="Senior HR Manager at Siemens with a passion for student development" data-de="Senior HR-Manager bei Siemens mit Leidenschaft für die Entwicklung von Studierenden">Senior HR Manager at Siemens with a passion for student development</p>
+            </div>
+        </div>
+        
+        <h3 class="section-subtitle" style="text-align: center; color: var(--accent); margin: 5rem 0 3rem;" data-en="Student Board (2025)" data-de="Studentischer Vorstand (2025)">Student Board (2025)</h3>
+        <div class="board-container">
+            <div class="board-card">
+                <div class="board-image">AK</div>
+                <h3>Aarav Kumar</h3>
+                <div class="board-role" data-en="President" data-de="Präsident">President</div>
+                <p data-en="Masters in Mechanical Engineering, passionate about community building" data-de="Master in Maschinenbau, leidenschaftlich am Gemeinschaftsaufbau interessiert">Masters in Mechanical Engineering, passionate about community building</p>
+            </div>
+            
+            <div class="board-card">
+                <div class="board-image">PD</div>
+                <h3>Priya Desai</h3>
+                <div class="board-role" data-en="Vice President" data-de="Vizepräsidentin">Vice President</div>
+                <p data-en="PhD candidate in Biotechnology, organizes academic workshops" data-de="Promotionsstudentin in Biotechnologie, organisiert akademische Workshops">PhD candidate in Biotechnology, organizes academic workshops</p>
+            </div>
+            
+            <div class="board-card">
+                <div class="board-image">RM</div>
+                <h3>Rohan Mehra</h3>
+                <div class="board-role" data-en="Treasurer" data-de="Schatzmeister">Treasurer</div>
+                <p data-en="Masters in Business Administration, manages club finances" data-de="Master in Betriebswirtschaft, verwaltet die Vereinsfinanzen">Masters in Business Administration, manages club finances</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section id="events" class="events">
+        <h2 class="section-title" data-en="Upcoming Events" data-de="Kommende Veranstaltungen">Upcoming Events</h2>
+        <p class="section-subtitle" data-en="Join us for these exciting activities" data-de="Nehmen Sie an diesen spannenden Aktivitäten teil">Join us for these exciting activities</p>
+        
+        <div class="events-container">
+            <div class="event-card">
+                <div class="event-image" style="background: url('https://images.unsplash.com/photo-1603383928958-c8a7a07e8143?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');">
+                    <div class="event-date" data-en="15 SEP 2025" data-de="15. SEP 2025">15 SEP 2025</div>
+                </div>
+                <div class="event-content">
+                    <h3 class="event-title" data-en="Diwali Celebration" data-de="Diwali-Feier">Diwali Celebration</h3>
+                    <div class="event-details">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span data-en="University of Siegen Campus" data-de="Campus der Universität Siegen">University of Siegen Campus</span>
+                    </div>
+                    <div class="event-details">
+                        <i class="fas fa-clock"></i>
+                        <span data-en="6:00 PM - 10:00 PM" data-de="18:00 - 22:00 Uhr">6:00 PM - 10:00 PM</span>
+                    </div>
+                    <p data-en="Join us for our first Diwali celebration! Traditional food, music, dance performances, and lighting of diyas." data-de="Nehmen Sie an unserer ersten Diwali-Feier teil! Traditionelles Essen, Musik, Tanzdarbietungen und das Anzünden von Diyas.">Join us for our first Diwali celebration! Traditional food, music, dance performances, and lighting of diyas.</p>
+                </div>
+            </div>
+            
+            <div class="event-card">
+                <div class="event-image" style="background: url('https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');">
+                    <div class="event-date" data-en="28 SEP 2025" data-de="28. SEP 2025">28 SEP 2025</div>
+                </div>
+                <div class="event-content">
+                    <h3 class="event-title" data-en="Career Workshop" data-de="Karriere-Workshop">Career Workshop</h3>
+                    <div class="event-details">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span data-en="Auditorium, AR Building" data-de="Auditorium, AR-Gebäude">Auditorium, AR Building</span>
+                    </div>
+                    <div class="event-details">
+                        <i class="fas fa-clock"></i>
+                        <span data-en="2:00 PM - 5:00 PM" data-de="14:00 - 17:00 Uhr">2:00 PM - 5:00 PM</span>
+                    </div>
+                    <p data-en="Learn how to navigate the German job market. Resume building, interview preparation, and networking strategies." data-de="Erfahren Sie, wie Sie sich auf dem deutschen Arbeitsmarkt zurechtfinden. Lebenslaufgestaltung, Vorbereitung auf Vorstellungsgespräche und Networking-Strategien.">Learn how to navigate the German job market. Resume building, interview preparation, and networking strategies.</p>
+                </div>
+            </div>
+            
+            <div class="event-card">
+                <div class="event-image" style="background: url('https://images.unsplash.com/photo-1531415074968-036ba1b575da?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');">
+                    <div class="event-date" data-en="12 OCT 2025" data-de="12. OKT 2025">12 OCT 2025</div>
+                </div>
+                <div class="event-content">
+                    <h3 class="event-title" data-en="Cricket Tournament" data-de="Cricket-Turnier">Cricket Tournament</h3>
+                    <div class="event-details">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span data-en="Leimbachstadion" data-de="Leimbachstadion">Leimbachstadion</span>
+                    </div>
+                    <div class="event-details">
+                        <i class="fas fa-clock"></i>
+                        <span data-en="10:00 AM - 4:00 PM" data-de="10:00 - 16:00 Uhr">10:00 AM - 4:00 PM</span>
+                    </div>
+                    <p data-en="Our first annual cricket tournament! Form your teams and compete for the championship trophy." data-de="Unser erstes jährliches Cricket-Turnier! Bilden Sie Ihre Teams und kämpfen Sie um die Meisterschaftstrophäe.">Our first annual cricket tournament! Form your teams and compete for the championship trophy.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery">
+        <h2 class="section-title" data-en="Our Moments" data-de="Unsere Momente">Our Moments</h2>
+        <p class="section-subtitle" data-en="Capturing memories from our events" data-de="Erinnerungen an unsere Veranstaltungen">Capturing memories from our events</p>
+        
+        <div class="gallery-container">
+            <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');">
+                <i class="fas fa-search-plus"></i>
+            </div>
+            <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');">
+                <i class="fas fa-search-plus"></i>
+            </div>
+            <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');">
+                <i class="fas fa-search-plus"></i>
+            </div>
+            <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');">
+                <i class="fas fa-search-plus"></i>
+            </div>
+            <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');">
+                <i class="fas fa-search-plus"></i>
+            </div>
+            <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');">
+                <i class="fas fa-search-plus"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="about">
+        <h2 class="section-title" data-en="Get In Touch" data-de="Kontaktieren Sie uns">Get In Touch</h2>
+        <p class="section-subtitle" data-en="We'd love to hear from you" data-de="Wir freuen uns von Ihnen zu hören">We'd love to hear from you</p>
+        
+        <div class="about-content">
+            <div class="card">
+                <h3><i class="fas fa-envelope"></i> <span data-en="Contact Information" data-de="Kontaktinformationen">Contact Information</span></h3>
+                <div style="display: flex; flex-wrap: wrap; gap: 2rem; margin-top: 2rem;">
+                    <div style="flex: 1; min-width: 250px;">
+                        <h4 style="margin-bottom: 1rem; color: var(--accent);" data-en="Our Office" data-de="Unser Büro">Our Office</h4>
+                        <p><i class="fas fa-map-marker-alt" style="color: var(--accent); margin-right: 10px;"></i> University of Siegen<br>Adolf-Reichwein-Straße 2<br>57076 Siegen</p>
+                    </div>
+                    <div style="flex: 1; min-width: 250px;">
+                        <h4 style="margin-bottom: 1rem; color: var(--accent);" data-en="Contact Details" data-de="Kontaktdetails">Contact Details</h4>
+                        <p><i class="fas fa-envelope" style="color: var(--accent); margin-right: 10px;"></i> contact@sisa-siegen.de</p>
+                        <p><i class="fas fa-phone" style="color: var(--accent); margin-right: 10px;"></i> +49 271 740-4912</p>
+                    </div>
+                </div>
+                <div style="margin-top: 2rem;">
+                    <h4 style="margin-bottom: 1rem; color: var(--accent);" data-en="Office Hours" data-de="Bürozeiten">Office Hours</h4>
+                    <p><i class="fas fa-clock" style="color: var(--accent); margin-right: 10px;"></i> <span data-en="Monday-Friday: 10:00 AM - 4:00 PM" data-de="Montag-Freitag: 10:00 - 16:00 Uhr">Monday-Friday: 10:00 AM - 4:00 PM</span></p>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3><i class="fas fa-paper-plane"></i> <span data-en="Send Us a Message" data-de="Senden Sie uns eine Nachricht">Send Us a Message</span></h3>
+                <form style="margin-top: 1.5rem;">
+                    <div style="display: flex; gap: 1.5rem; margin-bottom: 1.5rem;">
+                        <div style="flex: 1;">
+                            <label for="name" style="display: block; margin-bottom: 0.5rem; font-weight: 600;" data-en="Full Name" data-de="Vollständiger Name">Full Name</label>
+                            <input type="text" id="name" required style="width: 100%; padding: 1rem; border: 1px solid var(--border); border-radius: 8px; background: var(--card); color: var(--text);">
+                        </div>
+                        <div style="flex: 1;">
+                            <label for="email" style="display: block; margin-bottom: 0.5rem; font-weight: 600;" data-en="Email Address" data-de="E-Mail-Adresse">Email Address</label>
+                            <input type="email" id="email" required style="width: 100%; padding: 1rem; border: 1px solid var(--border); border-radius: 8px; background: var(--card); color: var(--text);">
+                        </div>
+                    </div>
+                    <div style="margin-bottom: 1.5rem;">
+                        <label for="subject" style="display: block; margin-bottom: 0.5rem; font-weight: 600;" data-en="Subject" data-de="Betreff">Subject</label>
+                        <input type="text" id="subject" required style="width: 100%; padding: 1rem; border: 1px solid var(--border); border-radius: 8px; background: var(--card); color: var(--text);">
+                    </div>
+                    <div style="margin-bottom: 1.5rem;">
+                        <label for="message" style="display: block; margin-bottom: 0.5rem; font-weight: 600;" data-en="Your Message" data-de="Ihre Nachricht">Your Message</label>
+                        <textarea id="message" required style="width: 100%; min-height: 150px; padding: 1rem; border: 1px solid var(--border); border-radius: 8px; background: var(--card); color: var(--text);"></textarea>
+                    </div>
+                    <button type="submit" style="background: var(--accent); color: var(--bg); border: none; padding: 1.2rem 2.5rem; border-radius: 50px; font-weight: 600; font-size: 1.1rem; cursor: pointer; transition: var(--transition);" data-en="Send Message" data-de="Nachricht senden">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <div class="logo" style="margin-bottom: 1.5rem;">
+                    <div class="logo-icon">S</div>
+                    <div class="logo-text">S<span style="color: var(--accent);">I</span>SA</div>
+                </div>
+                <p data-en="Siegen Indian Student Association - Connecting cultures since 2025" data-de="Siegen Indian Student Association - Verbindet Kulturen seit 2025">Siegen Indian Student Association - Connecting cultures since 2025</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-col">
+                <h4 data-en="Quick Links" data-de="Schnelllinks">Quick Links</h4>
+                <ul>
+                    <li><a href="#about"><i class="fas fa-chevron-right"></i> <span data-en="About Us" data-de="Über uns">About Us</span></a></li>
+                    <li><a href="#services"><i class="fas fa-chevron-right"></i> <span data-en="Services" data-de="Dienste">Services</span></a></li>
+                    <li><a href="#board"><i class="fas fa-chevron-right"></i> <span data-en="Leadership" data-de="Leitung">Leadership</span></a></li>
+                    <li><a href="#events"><i class="fas fa-chevron-right"></i> <span data-en="Events" data-de="Veranstaltungen">Events</span></a></li>
+                    <li><a href="#contact"><i class="fas fa-chevron-right"></i> <span data-en="Contact" data-de="Kontakt">Contact</span></a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h4 data-en="Contact Info" data-de="Kontaktinformation">Contact Info</h4>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> University of Siegen</li>
+                    <li><i class="fas fa-envelope"></i> contact@sisa-siegen.de</li>
+                    <li><i class="fas fa-phone"></i> +49 271 740-4912</li>
+                    <li><i class="fas fa-clock"></i> <span data-en="Mon-Fri: 10AM - 4PM" data-de="Mo-Fr: 10-16 Uhr">Mon-Fri: 10AM - 4PM</span></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            &copy; 2025 SISA - <span data-en="Siegen Indian Student Association" data-de="Siegener Indische Studentenvereinigung">Siegen Indian Student Association</span>. <span data-en="All Rights Reserved" data-de="Alle Rechte vorbehalten">All Rights Reserved</span>.
+        </div>
+    </footer>
+
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        
+        // Check for saved theme preference
+        const currentTheme = localStorage.getItem('theme');
+        if (currentTheme === 'dark') {
+            body.classList.add('dark-mode');
+            body.classList.add('dark-mode');
+        } else {
+            body.classList.add('light-mode');
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            body.classList.toggle('light-mode');
+            
+            // Save theme preference
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
+        });
+        
+        // Language toggle functionality
+        const langToggle = document.getElementById('langToggle');
+        let currentLang = 'en'; // Default language
+        
+        langToggle.addEventListener('click', () => {
+            currentLang = currentLang === 'en' ? 'de' : 'en';
+            updateLanguage(currentLang);
+        });
+        
+        function updateLanguage(lang) {
+            // Update all elements with data attributes
+            document.querySelectorAll('[data-en], [data-de]').forEach(element => {
+                if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                    element.placeholder = element.getAttribute(`data-${lang}`);
+                } else {
+                    if (element.hasAttribute(`data-${lang}`)) {
+                        if (element.classList.contains('logo-text') || 
+                            element.classList.contains('hero-highlight') || 
+                            element.classList.contains('section-title')) {
+                            // Handle HTML content
+                            element.innerHTML = element.getAttribute(`data-${lang}`);
+                        } else {
+                            element.textContent = element.getAttribute(`data-${lang}`);
+                        }
+                    }
+                }
+            });
+        }
+        
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Animation on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
