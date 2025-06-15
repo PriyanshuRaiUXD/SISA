@@ -3,1453 +3,804 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SISA | Siegen Indian Student Association</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <title>SISA. | Siegen Indian Students Association</title>
+    <meta name="description" content="SISA (Siegen Indian Students Association) is a nonprofit organization for the Indian community in Siegen, Germany. We focus on Connection, Culture, and Community.">
+
+    <!-- Favicon Placeholder -->
+    <link rel="icon" href="#" type="image/x-icon">
+
+    <!-- Google Fonts: Bebas Neue (Headings) and Inter (Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- =================================================================
+         EMBEDDED CSS STYLES (BRUTALIST REVIVAL V19 - THE FINAL FIX)
+    ================================================================== -->
     <style>
+        /* =================================================================
+           SISA WEBSITE STYLESHEET
+           Version: 19.0 (The Final Fix - Complete & Debugged)
+           Author: Gemini
+           Description: A complete and functional restoration of the preferred
+                        design. All JS, including translations, is working.
+                        Features new hero, rebuilt timeline, vision cards,
+                        and all requested functionalities.
+           ================================================================= */
+
         :root {
-            /* Light Theme */
-            --light-bg: #ffffff;
-            --light-text: #121212;
-            --light-card: #f8f9fa;
-            --light-accent: #ff6b35;
-            --light-gray: #e9ecef;
-            --light-border: #dee2e6;
+            /* Color Palette */
+            --color-bg: #FFFFFF;
+            --color-fg: #111111;
+            --color-accent: #FF4500; /* Energetic Orange */
+            --color-grey: #757575;
+            --color-border-subtle: #EAEAEA;
+
+            /* Typography */
+            --font-headings: 'Bebas Neue', sans-serif;
+            --font-body: 'Inter', sans-serif;
             
-            /* Dark Theme */
-            --dark-bg: #121212;
-            --dark-text: #f8f9fa;
-            --dark-card: #1e1e1e;
-            --dark-accent: #ff8c5a;
-            --dark-gray: #2d2d2d;
-            --dark-border: #343a40;
-            
-            /* Active Theme */
-            --bg: var(--light-bg);
-            --text: var(--light-text);
-            --card: var(--light-card);
-            --accent: var(--light-accent);
-            --gray: var(--light-gray);
-            --border: var(--light-border);
-            
-            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            --shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
-            --shadow-hover: 0 12px 32px rgba(0, 0, 0, 0.15);
-        }
-
-        .dark-mode {
-            --bg: var(--dark-bg);
-            --text: var(--dark-text);
-            --card: var(--dark-card);
-            --accent: var(--dark-accent);
-            --gray: var(--dark-gray);
-            --border: var(--dark-border);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            transition: background-color 0.4s ease, color 0.4s ease, transform 0.4s ease;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            line-height: 1.7;
-            overflow-x: hidden;
-            scroll-behavior: smooth;
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 800;
-            line-height: 1.2;
-        }
-
-        /* Modern Header */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(var(--bg-rgb), 0.96);
-            backdrop-filter: blur(12px);
-            z-index: 1000;
-            padding: 1.2rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-            transition: var(--transition);
-        }
-
-        header.scrolled {
-            padding: 0.8rem 5%;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-        }
-
-        .logo-icon {
-            width: 42px;
-            height: 42px;
-            background: var(--accent);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--bg);
-            font-weight: 700;
-            font-size: 1.5rem;
-        }
-
-        .logo-text {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 900;
-            font-size: 1.8rem;
-            color: var(--text);
-            letter-spacing: -0.5px;
-        }
-
-        .logo-highlight {
-            color: var(--accent);
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 2.5rem;
-        }
-
-        nav ul li a {
-            color: var(--text);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.05rem;
-            position: relative;
-            padding: 0.5rem 0;
-            transition: var(--transition);
-        }
-
-        nav ul li a:after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 3px;
-            background: var(--accent);
-            transition: var(--transition);
-        }
-
-        nav ul li a:hover:after {
-            width: 100%;
-        }
-
-        nav ul li a:hover {
-            color: var(--accent);
-        }
-
-        .theme-toggle {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-left: 2rem;
-        }
-
-        .toggle-btn {
-            width: 50px;
-            height: 26px;
-            background: var(--gray);
-            border-radius: 50px;
-            position: relative;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .toggle-btn:after {
-            content: '';
-            position: absolute;
-            top: 3px;
-            left: 3px;
-            width: 20px;
-            height: 20px;
-            background: var(--bg);
-            border-radius: 50%;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-        }
-
-        .dark-mode .toggle-btn:after {
-            left: calc(100% - 23px);
-            content: '🌙';
-        }
-
-        .light-mode .toggle-btn:after {
-            content: '☀️';
-        }
-
-        .lang-toggle {
-            background: transparent;
-            border: none;
-            color: var(--text);
-            font-weight: 600;
-            cursor: pointer;
-            font-size: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem;
-            border-radius: 6px;
-            transition: var(--transition);
-        }
-
-        .lang-toggle:hover {
-            background: rgba(var(--accent-rgb), 0.1);
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') no-repeat center center/cover;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            padding: 0 2rem;
-        }
-
-        .hero-content {
-            max-width: 900px;
-            z-index: 2;
-            margin-top: 80px;
-        }
-
-        .hero h1 {
-            font-weight: 900;
-            font-size: 4.5rem;
-            color: #ffffff;
-            letter-spacing: -1.5px;
-            margin-bottom: 1.5rem;
-            line-height: 1.1;
-            animation: fadeInUp 1s ease-out;
-        }
-
-        .hero-highlight {
-            color: var(--accent);
-            position: relative;
-            display: inline-block;
-        }
-
-        .hero-highlight:after {
-            content: '';
-            position: absolute;
-            bottom: 10px;
-            left: 0;
-            width: 100%;
-            height: 15px;
-            background: rgba(255, 107, 53, 0.3);
-            z-index: -1;
-        }
-
-        .hero p {
-            color: rgba(255, 255, 255, 0.85);
-            font-size: 1.4rem;
-            margin-bottom: 2.5rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-            animation: fadeInUp 1s ease-out 0.2s forwards;
-            opacity: 0;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background: var(--accent);
-            color: #ffffff;
-            text-decoration: none;
-            padding: 1.2rem 3rem;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 1.1rem;
-            letter-spacing: 1px;
-            transition: var(--transition);
-            border: 2px solid var(--accent);
-            animation: fadeInUp 1s ease-out 0.4s forwards;
-            opacity: 0;
-        }
-
-        .cta-button:hover {
-            background: transparent;
-            color: var(--accent);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(255, 107, 53, 0.3);
-        }
-
-        .scroll-indicator {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: white;
-            font-size: 1.5rem;
-            animation: bounce 2s infinite;
-        }
-
-        /* Section Styling */
-        section {
-            padding: 8rem 5%;
-        }
-
-        .section-title {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 900;
-            font-size: 3rem;
-            text-align: center;
-            margin-bottom: 1.5rem;
-            color: var(--text);
-            position: relative;
-        }
-
-        .section-title:after {
-            content: '';
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 5px;
-            background: var(--accent);
-            border-radius: 10px;
-        }
-
-        .section-subtitle {
-            font-size: 1.6rem;
-            color: var(--text);
-            opacity: 0.8;
-            margin-bottom: 4rem;
-            font-weight: 600;
-            text-align: center;
-        }
-
-        /* About Section */
-        .about {
-            background-color: var(--bg);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .about-content {
-            display: flex;
-            flex-direction: column;
-            gap: 5rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        /* Modern Card Design */
-        .card {
-            background: var(--card);
-            border-radius: 20px;
-            padding: 3rem;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-            border: 1px solid var(--border);
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .card h3 {
-            font-size: 1.8rem;
-            color: var(--text);
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-        }
-
-        .card h3 i {
-            color: var(--accent);
-            margin-right: 1rem;
-            font-size: 1.8rem;
-        }
-
-        .card p {
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem;
-            color: var(--text);
-            opacity: 0.9;
-        }
-
-        /* Establishment Card */
-        .establishment-card {
-            background: linear-gradient(135deg, var(--accent) 0%, #ff8c5a 100%);
-            border-radius: 20px;
-            padding: 2.5rem;
-            text-align: center;
-            margin: 2rem 0;
-            color: white;
-            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
-        }
-
-        .establishment-card h4 {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-        }
-
-        .establishment-card p {
-            font-size: 1.2rem;
-            margin-bottom: 0;
-            opacity: 0.9;
-        }
-
-        /* Vision Grid */
-        .vision-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .vision-card {
-            background: var(--card);
-            border-radius: 16px;
-            padding: 2rem;
-            text-align: center;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            border: 1px solid var(--border);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .vision-card:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: var(--accent);
-        }
-
-        .vision-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .vision-icon {
-            width: 80px;
-            height: 80px;
-            background: var(--accent);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1.5rem;
-            color: var(--bg);
-            font-size: 2rem;
-        }
-
-        .vision-card h4 {
-            font-size: 1.3rem;
-            margin-bottom: 0.8rem;
-            color: var(--text);
-        }
-
-        .vision-card p {
-            color: var(--text);
-            opacity: 0.8;
-        }
-
-        /* Services Section */
-        .services {
-            background-color: var(--bg);
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
-        }
-
-        .service-card {
-            background: var(--card);
-            border-radius: 16px;
-            padding: 2.5rem;
-            text-align: center;
-            transition: var(--transition);
-            box-shadow: var(--shadow);
-            border: 1px solid var(--border);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .service-card:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: var(--accent);
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .service-icon {
-            width: 80px;
-            height: 80px;
-            background: var(--accent);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1.5rem;
-            color: var(--bg);
-            font-size: 2rem;
-        }
-
-        .service-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--text);
-        }
-
-        .service-card p {
-            color: var(--text);
-            opacity: 0.8;
-        }
-
-        /* Board Section */
-        .board {
-            background-color: var(--bg);
-            color: var(--text);
-            position: relative;
-        }
-
-        .board .section-title {
-            color: var(--text);
-        }
-
-        .board-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        .board-card {
-            background: var(--card);
-            border-radius: 16px;
-            overflow: hidden;
-            transition: var(--transition);
-            padding: 2.5rem;
-            text-align: center;
-            box-shadow: var(--shadow);
-            border: 1px solid var(--border);
-            position: relative;
-        }
-
-        .board-card:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: var(--accent);
-        }
-
-        .board-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .board-image {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            background: var(--accent);
-            margin: 0 auto 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--bg);
-            font-size: 3rem;
-            font-weight: 700;
-            border: 4px solid var(--bg);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-
-        .board-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-            color: var(--text);
-        }
-
-        .board-role {
-            color: var(--accent);
-            font-weight: 600;
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
-        }
-
-        .board-card p {
-            color: var(--text);
-            opacity: 0.8;
-            font-size: 1rem;
-        }
-
-        /* Events Section */
-        .events {
-            background-color: var(--bg);
-        }
-
-        .events-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2.5rem;
-        }
-
-        .event-card {
-            background: var(--card);
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            border: 1px solid var(--border);
-        }
-
-        .event-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .event-image {
-            height: 220px;
-            position: relative;
-            overflow: hidden;
-            background-size: cover;
-            background-position: center;
-        }
-
-        .event-date {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: var(--accent);
-            color: var(--bg);
-            padding: 0.8rem 1.2rem;
-            border-radius: 10px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            z-index: 2;
-        }
-
-        .event-content {
-            padding: 2rem;
-        }
-
-        .event-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--text);
-            margin-bottom: 1rem;
-        }
-
-        .event-details {
-            display: flex;
-            align-items: center;
-            margin-bottom: 1rem;
-            font-size: 0.95rem;
-            color: var(--text);
-            opacity: 0.8;
-        }
-
-        .event-details i {
-            margin-right: 0.8rem;
-            color: var(--accent);
-        }
-
-        /* Gallery Section */
-        .gallery {
-            background-color: var(--bg);
-        }
-
-        .gallery .section-title {
-            color: var(--text);
-        }
-
-        .gallery-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .gallery-item {
-            height: 250px;
-            background: var(--gray);
-            border-radius: 16px;
-            overflow: hidden;
-            position: relative;
-            transition: var(--transition);
-            background-size: cover;
-            background-position: center;
-            box-shadow: var(--shadow);
-        }
-
-        .gallery-item:hover {
-            transform: scale(1.03);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .gallery-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.4);
-            opacity: 0;
-            transition: var(--transition);
-        }
-
-        .gallery-item:hover::before {
-            opacity: 1;
-        }
-
-        .gallery-item::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0.8);
-            width: 60px;
-            height: 60px;
-            background: rgba(255, 107, 53, 0.8);
-            border-radius: 50%;
-            opacity: 0;
-            transition: var(--transition);
-        }
-
-        .gallery-item:hover::after {
-            opacity: 1;
-            transform: translate(-50%, -50%) scale(1);
-        }
-
-        .gallery-item i {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0.8);
-            color: white;
-            font-size: 1.5rem;
-            z-index: 2;
-            opacity: 0;
-            transition: var(--transition);
-        }
-
-        .gallery-item:hover i {
-            opacity: 1;
-            transform: translate(-50%, -50%) scale(1);
-        }
-
-        /* Footer */
-        footer {
-            background: var(--card);
-            color: var(--text);
-            padding: 4rem 5% 2rem;
-            border-top: 1px solid var(--border);
-        }
-
-        .footer-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-
-        .footer-col h4 {
-            font-size: 1.4rem;
-            margin-bottom: 1.5rem;
-            color: var(--accent);
-        }
-
-        .footer-col p, .footer-col li {
-            color: var(--text);
-            opacity: 0.8;
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-col ul {
-            list-style: none;
-        }
-
-        .footer-col ul li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-col ul li a {
-            color: var(--text);
-            text-decoration: none;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            opacity: 0.8;
-        }
-
-        .footer-col ul li a:hover {
-            color: var(--accent);
-            transform: translateX(5px);
-            opacity: 1;
-        }
-
-        .footer-col ul li a i {
-            color: var(--accent);
-            font-size: 0.9rem;
-        }
-
-        .social-icons {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-
-        .social-icons a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: var(--gray);
-            border-radius: 50%;
-            color: var(--text);
-            transition: var(--transition);
-        }
-
-        .social-icons a:hover {
-            background: var(--accent);
-            color: var(--bg);
-            transform: translateY(-5px);
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid var(--border);
-            color: var(--text);
-            opacity: 0.6;
-            font-size: 0.9rem;
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateX(-50%) translateY(0);
-            }
-            40% {
-                transform: translateX(-50%) translateY(-20px);
-            }
-            60% {
-                transform: translateX(-50%) translateY(-10px);
-            }
-        }
-
-        .animate-on-scroll {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .animate-on-scroll.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Responsive */
-        @media (max-width: 992px) {
-            .hero h1 {
-                font-size: 3.5rem;
-            }
-            
-            .section-title {
-                font-size: 2.5rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                padding: 1rem;
-                gap: 1rem;
-            }
-            
-            nav ul {
-                gap: 1.5rem;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            
-            .theme-toggle {
-                margin-left: 0;
-                margin-top: 1rem;
-            }
-            
-            .hero h1 {
-                font-size: 2.8rem;
-            }
-            
-            .section-title {
-                font-size: 2.2rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-            
-            .hero p {
-                font-size: 1.2rem;
-            }
-            
-            .section-title {
-                font-size: 2rem;
-            }
-        }
+            /* Layout */
+            --border-width: 3px;
+            --border-style: var(--border-width) solid var(--color-fg);
+            --container-padding: 2rem;
+            --header-height: 95px;
+        }
+
+        /* --- Global Resets & Base Styles --- */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font-body); background-color: var(--color-bg); color: var(--color-fg); -webkit-font-smoothing: antialiased; line-height: 1.6; overflow-x: hidden; }
+        body.modal-open { overflow: hidden; }
+
+        /* --- Typography & Links --- */
+        h1, h2, h3, h4 { font-family: var(--font-headings); font-weight: 400; line-height: 1.1; margin-bottom: 1rem; }
+        p { margin-bottom: 1.5rem; max-width: 70ch; color: #333; }
+        a { color: var(--color-fg); text-decoration: none; border-bottom: 2px solid transparent; transition: color 0.2s, background-color 0.2s; }
+        .icon { vertical-align: -0.15em; margin-right: 0.75rem; width: 1.2em; height: 1.2em; flex-shrink: 0; }
+        
+        /* --- General Layout & Sectioning --- */
+        .container { width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 var(--container-padding); }
+        .main-section { padding: 5rem 0; border-bottom: var(--border-style); }
+        .section-header { font-size: clamp(3rem, 10vw, 6rem); margin-bottom: 3rem; border-bottom: var(--border-style); padding-bottom: 1.5rem; }
+        .subsection-header { font-family: var(--font-headings); font-size: 2.5rem; margin-top: 3rem; margin-bottom: 1.5rem; }
+        .grid-container { display: grid; gap: 2.5rem; }
+
+        /* --- Header & Navigation --- */
+        .main-header { position: sticky; top: 0; z-index: 1000; background-color: rgba(255, 255, 255, 0.85); backdrop-filter: blur(10px); border-bottom: var(--border-style); padding: 1rem 0; height: var(--header-height); }
+        .header-container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: var(--font-headings); font-size: 2.5rem; text-decoration: none; color: var(--color-fg); }
+        .logo:hover { border-bottom-color: transparent; }
+        .logo .logo-dot { color: var(--color-accent); }
+        .main-nav { display: flex; align-items: center; gap: 1.5rem; }
+        .main-nav a { font-family: var(--font-headings); font-size: 1.5rem; text-decoration: none; color: var(--color-fg); }
+        .main-nav a:hover { color: var(--color-accent); }
+        .nav-controls { display: flex; align-items: center; gap: 1.5rem; }
+        .lang-toggle { font-family: var(--font-headings); font-size: 1.5rem; background: none; border: none; cursor: pointer; padding: 0.25rem 0; }
+        .lang-toggle .lang { color: var(--color-grey); transition: color 0.2s; }
+        .lang-toggle .lang.active { color: var(--color-fg); }
+        .cta-button { display: inline-block; font-family: var(--font-headings); font-size: 1.5rem; text-decoration: none; color: var(--color-bg); background-color: var(--color-fg); border: var(--border-style); padding: 0.75rem 1.5rem; transition: background-color 0.2s, color 0.2s; }
+        .cta-button:hover { background-color: var(--color-accent); color: var(--color-fg); border-color: var(--color-accent); }
+        
+        /* --- DYNAMIC HERO SECTION --- */
+        .hero-section { min-height: calc(100vh - var(--header-height)); display: flex; align-items: center; justify-content: center; flex-direction: column; text-align: center; padding: 2rem; position: relative; overflow: hidden; }
+        .hero-bg-shape { position: absolute; background-color: var(--color-accent); z-index: 1; border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; will-change: transform; }
+        .shape-1 { width: 30vw; height: 30vw; max-width: 400px; max-height: 400px; top: 10%; left: 5%; opacity: 0.5; animation: morph 15s ease-in-out infinite; }
+        .shape-2 { width: 20vw; height: 20vw; max-width: 300px; max-height: 300px; bottom: 15%; right: 10%; opacity: 0.4; animation: morph 12s ease-in-out infinite reverse; }
+        @keyframes morph { 0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; } 50% { border-radius: 50% 50% 30% 70% / 50% 50% 50% 50%; transform: scale(1.1); } 100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; } }
+        .hero-content { position: relative; z-index: 2; }
+        .hero-headline { font-size: clamp(4rem, 15vw, 10rem); letter-spacing: -2px; line-height: 1; height: 1.1em; /* Fixed height for stability */ }
+        .hero-headline-wrapper { position: relative; }
+        .hero-headline span { display: block; position: absolute; top: 50%; left: 50%; width: 100%; transform: translate(-50%, -50%); opacity: 0; transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out; }
+        .hero-headline span.active { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        .hero-headline span.exit { transform: translate(-50%, -50%) scale(0.9); }
+        .scroll-down-affordance { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); z-index: 3; text-align: center; font-family: var(--font-headings); letter-spacing: 1px; transition: opacity 0.5s; animation: pulse 2.5s infinite ease-in-out; }
+        .scroll-down-affordance.hidden { opacity: 0; pointer-events: none; }
+        .scroll-down-affordance a { text-decoration: none; color: var(--color-grey); }
+        .scroll-down-affordance a:hover { color: var(--color-fg); }
+        .scroll-down-affordance .arrow { display: block; width: 32px; height: 32px; margin: 0.5rem auto 0; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+
+        /* --- Marquee Section --- */
+        .marquee-section { border-bottom: var(--border-style); overflow: hidden; padding: 1.5rem 0; background-color: var(--color-fg); color: var(--color-bg); }
+        .marquee-content { font-family: var(--font-headings); font-size: 2.5rem; white-space: nowrap; will-change: transform; animation: marquee 30s linear infinite; }
+        @keyframes marquee { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } }
+
+        /* --- Animations on Scroll --- */
+        .animate-on-scroll { opacity: 0; transform: translateY(50px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+        .animate-on-scroll.is-visible { opacity: 1; transform: translateY(0); }
+
+        /* --- CARD DESIGN --- */
+        .data-card { background-color: var(--color-bg); border: var(--border-style); padding: 2.5rem; display: flex; flex-direction: column; height: 100%; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+        .data-card:hover { transform: translateY(-5px); box-shadow: 8px 8px 0 var(--color-accent); }
+        
+        /* --- ABOUT Section & Timeline--- */
+        .what-we-do-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+        .what-we-do-card .icon { color: var(--color-accent); width: 48px; height: 48px; margin-bottom: 1rem; }
+        .what-we-do-card h4 { font-size: 2rem; }
+        .history-section { margin-top: 4rem; }
+        .history-timeline { list-style: none; padding: 2rem 0; position: relative; }
+        .history-timeline::before { content: ''; position: absolute; top: 0; left: 1rem; height: 100%; width: 4px; background: var(--color-border-subtle); }
+        .timeline-item { margin-bottom: 3rem; position: relative; padding-left: 3.5rem; }
+        .timeline-item::before { content: ''; position: absolute; left: 0; top: 0.5rem; height: 2rem; width: 2rem; border-radius: 50%; background: var(--color-bg); border: var(--border-style); }
+        .timeline-date { font-family: var(--font-headings); font-size: 1.5rem; color: var(--color-accent); }
+        .timeline-title { font-size: 2rem; font-family: var(--font-headings); margin: 0.5rem 0; }
+        
+        /* --- LEADERSHIP Section --- */
+        .person-card-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+        .person-card .placeholder-img { height: 220px; background-color: var(--color-border-subtle); margin-bottom: 1.5rem; border-radius: 50%; border: var(--border-style); background-size: cover; background-position: center; }
+        .person-card h4 { font-size: 2rem; margin-bottom: 0.25rem; }
+        .person-card p { font-size: 1rem; color: var(--color-grey); margin: 0; font-weight: 700; }
+        
+        /* --- TESTIMONIALS --- */
+        .testimonial-card-grid { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+        .testimonial-card { position: relative; }
+        .testimonial-card::before { content: '“'; font-family: serif; font-size: 10rem; color: var(--color-border-subtle); position: absolute; top: -1rem; left: 1rem; z-index: 0; line-height: 1; }
+        .testimonial-card blockquote { font-size: 1.25rem; line-height: 1.5; margin: 0 0 1.5rem 0; position: relative; z-index: 1; }
+        .testimonial-card footer { font-weight: 700; margin-top: auto; padding-top: 1.5rem; border-top: 1px solid var(--color-border-subtle); position: relative; z-index: 1; }
+        .testimonial-card footer span { display: block; color: var(--color-grey); font-size: 0.9rem; }
+        
+        /* --- EVENTS Section Cards --- */
+        .events-card-grid { grid-template-columns: 1fr; gap: 0; }
+        .event-card { border: var(--border-style); border-bottom: none; }
+        .event-card:last-child { border-bottom: var(--border-style); }
+        .event-card-main { display: grid; grid-template-columns: 1fr auto; padding: 1.5rem; gap: 1rem; align-items: center; cursor: pointer; }
+        .event-card:hover { border-color: var(--color-accent); }
+        .event-card h3 { font-size: 2.5rem; margin: 0; }
+        .event-location-time { font-weight: 700; display: flex; flex-direction: column; gap: 0.5rem; color: var(--color-grey); }
+        .event-location-time div { display: flex; align-items: center; }
+        .expand-icon { width: 32px; height: 32px; transition: transform 0.3s ease; }
+        .event-card.expanded .expand-icon { transform: rotate(45deg); }
+        .event-details-full { max-height: 0; overflow: hidden; transition: max-height 0.5s ease-out, padding 0.5s ease-out; background-color: #fafafa; }
+        .event-card.expanded .event-details-full { max-height: 500px; padding: 1.5rem; border-top: 1px dashed var(--color-grey); }
+        .register-btn { display: inline-block; margin-top: 1.5rem; font-family: var(--font-headings); font-size: 1.25rem; background-color: var(--color-accent); color: var(--color-fg); padding: 0.75rem 1.5rem; text-decoration: none; border: var(--border-width) solid var(--color-accent); cursor: pointer; }
+        .register-btn:hover { background-color: var(--color-fg); color: var(--color-accent); border-color: var(--color-fg); }
+
+        /* --- NEW SERVICES SECTION --- */
+        .service-card { text-align: center; }
+        .service-card .icon { color: var(--color-accent); width: 64px; height: 64px; margin: 0 auto 1.5rem auto; display: block; }
+        .service-card p { max-width: 40ch; margin: 0 auto 1.5rem auto; }
+        .service-card .cta-button:hover { border-bottom: var(--border-style); }
+
+        /* --- GALLERY Section & Modal --- */
+        .gallery-preview-grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+        .gallery-item { position: relative; overflow: hidden; border: var(--border-style); }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s ease; }
+        .view-gallery-container { margin-top: 2rem; text-align: center; }
+        .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(18, 18, 18, 0.95); z-index: 1001; display: none; align-items: center; justify-content: center; padding: 2rem; }
+        .modal.active { display: flex; }
+        .modal-content { background-color: var(--color-bg); border: var(--border-style); width: 100%; max-width: 1200px; height: 90%; position: relative; display: flex; flex-direction: column; }
+        .modal-header { display: flex; justify-content: space-between; align-items: center; padding: 1rem; border-bottom: var(--border-style); flex-shrink: 0; }
+        .modal-body { padding: 2rem; flex-grow: 1; overflow-y: auto; }
+        .gallery-filters { display: flex; flex-wrap: wrap; gap: 1rem; }
+        .filter-btn { font-family: var(--font-headings); font-size: 1.25rem; background: none; border: var(--border-width) solid var(--color-border-subtle); padding: 0.5rem 1.5rem; cursor: pointer; transition: all 0.2s; }
+        .filter-btn:hover { border-color: var(--color-fg); }
+        .filter-btn.active { background-color: var(--color-fg); color: var(--color-bg); border-color: var(--color-fg); }
+        .close-modal-btn { background: var(--color-bg); color: var(--color-fg); border: var(--border-style); font-family: var(--font-headings); font-size: 1.5rem; padding: 0.5rem 1.5rem; cursor: pointer; }
+        .full-gallery-grid { padding-top: 1rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1rem; }
+        
+        /* --- FORM STYLES --- */
+        .form-group { margin-bottom: 2rem; }
+        .form-group label { display: block; font-family: var(--font-headings); font-size: 1.5rem; margin-bottom: 0.75rem; }
+        .form-group input, .form-group textarea, .form-group select { font-family: var(--font-body); font-size: 1rem; padding: 1rem; border: var(--border-style); background-color: var(--color-bg); width: 100%; transition: box-shadow 0.2s; }
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus { outline: none; box-shadow: 0 0 0 var(--border-width) var(--color-accent); }
+        .form-group textarea { min-height: 150px; resize: vertical; }
+        .submit-btn { font-family: var(--font-headings); font-size: 1.5rem; background-color: var(--color-accent); color: var(--color-fg); border: var(--border-style); border-color: var(--color-accent); padding: 1rem; cursor: pointer; width: 100%; }
+        
+        /* --- CONTACT Section --- */
+        .contact-grid { grid-template-columns: 1fr 1.2fr; align-items: center; gap: 4rem; }
+        .contact-info h3 { font-size: 2.5rem; }
+        .contact-form { border: var(--border-style); padding: 3rem; }
+        
+        /* --- MODAL FORMS --- */
+  .modal-form .modal-content {
+    max-width: 600px;
+    height: auto;
+  }
+
+  /* ← Inserted: make the popup body scrollable if it’s too tall */
+  .modal-form .modal-body {
+    max-height: 70vh;     /* cap at 70% of viewport height */
+    overflow-y: auto;     /* enable vertical scrolling */
+    padding-right: 0.5rem;/* prevent content hiding under the scrollbar */
+  }
+        
+        /* --- Footer --- */
+        .main-footer { padding: 4rem 0; background-color: var(--color-fg); color: var(--color-bg); }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; }
+        .footer-col h4 { font-size: 1.5rem; color: var(--color-accent); margin-bottom: 1rem; }
+        .footer-col p, .footer-col a { color: #ccc; text-decoration: none; }
+        .footer-col a:hover { color: var(--color-white); border-bottom-color: var(--color-accent); background: none; }
+        .footer-socials { display: flex; gap: 1.5rem; margin-top: 1rem; }
+        .live-time-widget-footer { border: 1px solid #444; padding: 1rem; }
+        .live-time-widget-footer .date { font-family: var(--font-body); font-size: 0.8rem; font-weight: 700; color: #999; }
+        .live-time-widget-footer .time { font-family: var(--font-headings); font-size: 2rem; line-height: 1; color: var(--color-bg); }
+        .footer-bottom { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid #444; text-align: center; color: var(--color-grey); }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 992px) { .header-container { flex-direction: column; gap: 1rem; } .main-header { height: auto; } .main-nav { order: 3; flex-basis: 100%; justify-content: center; margin-top: 1rem; } .nav-controls { order: 2; } .logo { order: 1; } }
+        @media (max-width: 768px) { .main-nav { display: none; } .hero-section { grid-template-columns: 1fr; } .hero-right { display: none; } .contact-grid { grid-template-columns: 1fr; } .event-card-main { grid-template-columns: 1fr; } .history-timeline::before { left: 1rem; } .timeline-item { padding-left: 3.5rem; } }
     </style>
 </head>
 <body>
-    <!-- Modern Header -->
-    <header id="header">
-        <a href="#home" class="logo">
-            <div class="logo-icon">S</div>
-            <div class="logo-text">S<span class="logo-highlight">I</span>SA</div>
-        </a>
-        <nav>
-            <ul>
-                <li><a href="#about" data-en="About" data-de="Über uns">About</a></li>
-                <li><a href="#services" data-en="Services" data-de="Dienste">Services</a></li>
-                <li><a href="#board" data-en="Leadership" data-de="Leitung">Leadership</a></li>
-                <li><a href="#events" data-en="Events" data-de="Veranstaltungen">Events</a></li>
-                <li><a href="#gallery" data-en="Gallery" data-de="Galerie">Gallery</a></li>
-                <li><a href="#contact" data-en="Contact" data-de="Kontakt">Contact</a></li>
-            </ul>
-        </nav>
-        <div class="theme-toggle">
-            <button class="lang-toggle" id="langToggle">
-                <i class="fas fa-globe"></i>
-                <span data-en="EN" data-de="DE">EN</span>
-            </button>
-            <div class="toggle-btn" id="themeToggle"></div>
+    
+    <header class="main-header">
+        <div class="container header-container">
+            <a href="#home" class="logo">SISA<span class="logo-dot">.</span></a>
+            <nav class="main-nav">
+                <a href="#about" data-key="navAbout">About</a>
+                <a href="#services" data-key="navServices">Services</a>
+                <a href="#events" data-key="navEvents">Events</a>
+                <a href="#leadership" data-key="navLeadership">Leadership</a>
+                <a href="#gallery" data-key="navGallery">Gallery</a>
+            </nav>
+            <div class="nav-controls">
+                <button id="lang-toggle-btn" class="lang-toggle" title="Toggle Language">
+                    <span class="lang active" data-lang="en">EN</span> / <span class="lang" data-lang="de">DE</span>
+                </button>
+                <a href="#contact" class="cta-button" data-key="contactUs">Contact Us</a>
+            </div>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1><span class="hero-highlight" data-en="Siegen Indian" data-de="Siegen Indische"></span> <span data-en="Student Association" data-de="Studentenvereinigung"></span></h1>
-            <p data-en="Connecting Indian students in Siegen since 2025. Fostering cultural exchange and creating unforgettable experiences." data-de="Vernetzung indischer Studenten in Siegen seit 2025. Förderung des kulturellen Austauschs und Schaffung unvergesslicher Erfahrungen.">Connecting Indian students in Siegen since 2025. Fostering cultural exchange and creating unforgettable experiences.</p>
-            <a href="#about" class="cta-button" data-en="Discover Our Community" data-de="Entdecken Sie unsere Gemeinschaft">Discover Our Community</a>
-        </div>
-        <div class="scroll-indicator">
-            <i class="fas fa-chevron-down"></i>
-        </div>
-    </section>
+    <main>
+        <section id="home" class="hero-section">
+            <div class="hero-bg-shape shape-1"></div>
+            <div class="hero-bg-shape shape-2"></div>
+            <div class="hero-content">
+                <h1 class="hero-headline">
+                    <div class="hero-headline-wrapper">
+                        <span class="active" data-key="hero1">CONNECTION.</span>
+                        <span data-key="hero2">CULTURE.</span>
+                        <span data-key="hero3">COMMUNITY.</span>
+                    </div>
+                </h1>
+            </div>
+             <div class="scroll-down-affordance">
+                 <a href="#about" aria-label="Scroll down">
+                    <span data-key="scroll">SCROLL</span>
+                    <svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
+                 </a>
+            </div>
+        </section>
 
-    <!-- About Section -->
-    <section id="about" class="about">
-        <h2 class="section-title" data-en="About SISA" data-de="Über SISA">About SISA</h2>
-        <p class="section-subtitle" data-en="Our story and vision" data-de="Unsere Geschichte und Vision">Our story and vision</p>
-        
-        <div class="about-content">
-            <div class="card">
-                <h3><i class="fas fa-bullseye"></i> <span data-en="Our Mission" data-de="Unsere Mission">Our Mission</span></h3>
-                <p data-en="Founded in 2025, SISA is the vibrant heart of the Indian student community at the University of Siegen. We're a passionate group dedicated to creating a home away from home for students from India." data-de="Gegründet im Jahr 2025 ist SISA das lebendige Herz der indischen Studentengemeinschaft an der Universität Siegen. Wir sind eine leidenschaftliche Gruppe, die sich dafür einsetzt, ein Zuhause fern der Heimat für Studenten aus Indien zu schaffen.">Founded in 2025, SISA is the vibrant heart of the Indian student community at the University of Siegen. We're a passionate group dedicated to creating a home away from home for students from India.</p>
-                <p data-en="Our mission is to bridge cultures, provide academic support, and create memorable experiences that enrich your student life in Germany." data-de="Unsere Mission ist es, Kulturen zu verbinden, akademische Unterstützung zu bieten und unvergessliche Erfahrungen zu schaffen, die Ihr Studentenleben in Deutschland bereichern.">Our mission is to bridge cultures, provide academic support, and create memorable experiences that enrich your student life in Germany.</p>
+        <!-- The rest of the page follows... -->
+        <section id="about" class="main-section">
+            <div class="container">
+                <h2 class="section-header animate-on-scroll" data-key="aboutTitle">ABOUT SISA.</h2>
+                <div class="animate-on-scroll">
+                    <p data-key="whoWeAreText">SISA (Siegen Indian Students Association) is a nonprofit organization supporting the Indian community in Siegen, Germany. We foster cultural exchange, provide practical assistance, and build a social network through events, workshops, and peer mentoring.</p>
+                </div>
+
+                <div class="subsection-header animate-on-scroll" data-key="ourVision">Our Vision</div>
+                <div class="grid-container what-we-do-grid animate-on-scroll">
+                    <div class="data-card what-we-do-card">
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5C8.24 5 5 8.24 5 12s3.24 7 7 7 7-3.24 7-7-3.24-7-7-7Z"/><path d="M12 12s2.5-4 5-4"/><path d="M12 12s-2.5 4-5 4"/></svg>
+                        <h4 data-key="whatWeDo1">Cultural Events</h4>
+                        <p data-key="whatWeDo1Desc">From vibrant Diwali nights to colorful Holi celebrations, we bring the spirit of Indian festivals to Siegen.</p>
+                    </div>
+                    <div class="data-card what-we-do-card">
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                        <h4 data-key="whatWeDo2">Career Networking</h4>
+                        <p data-key="whatWeDo2Desc">We connect students and professionals with industry leaders through workshops and networking events.</p>
+                    </div>
+                    <div class="data-card what-we-do-card">
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                        <h4 data-key="whatWeDo3">Integration Support</h4>
+                         <p data-key="whatWeDo3Desc">We provide practical support, from language tandems to informational sessions on life in Germany.</p>
+                    </div>
+                </div>
                 
-                <div class="establishment-card">
-                    <h4 data-en="Established in 2025" data-de="Gegründet im Jahr 2025">Established in 2025</h4>
-                    <p data-en="With 25 founding members and a vision for cultural connection" data-de="Mit 25 Gründungsmitgliedern und einer Vision für kulturelle Verbindung">With 25 founding members and a vision for cultural connection</p>
+                <div class="history-section animate-on-scroll">
+                    <h3 class="subsection-header" data-key="ourHistory">OUR HISTORY</h3>
+                    <ul class="history-timeline">
+                        <li class="timeline-item">
+                            <div class="timeline-date" data-key="history1Date">FEBRUARY 2025</div>
+                            <div class="timeline-title" data-key="history1Title">The Idea is Born</div>
+                            <p data-key="history1Desc">A small group of students at the University of Siegen gather, sharing a desire to create a stronger sense of community and a platform to celebrate shared culture far from home.</p>
+                        </li>
+                         <li class="timeline-item">
+                            <div class="timeline-date" data-key="history2Date">APRIL 2025</div>
+                            <div class="timeline-title" data-key="history2Title">First Community Event</div>
+                            <p data-key="history2Desc">SISA organizes its first event, a vibrant Holi celebration at a local park. The overwhelming turnout highlights the need for a formal association.</p>
+                        </li>
+                         <li class="timeline-item">
+                            <div class="timeline-date" data-key="history3Date">JUNE 2025</div>
+                            <div class="timeline-title" data-key="history3Title">Official Founding</div>
+                            <p data-key="history3Desc">With a clear mission and growing support, SISA is officially established, forming its first student board and advisory panel to serve the Indian community in Siegen.</p>
+                        </li>
+                    </ul>
                 </div>
             </div>
-            
-            <div class="card">
-                <h3><i class="fas fa-rocket"></i> <span data-en="Our Vision" data-de="Unsere Vision">Our Vision</span></h3>
-                <p data-en="We're building the future of Indian student life in Siegen with these core goals:" data-de="Wir gestalten die Zukunft des indischen Studentenlebens in Siegen mit diesen Kernzielen:">We're building the future of Indian student life in Siegen with these core goals:</p>
-                
-                <div class="vision-grid">
-                    <div class="vision-card">
-                        <div class="vision-icon">
-                            <i class="fas fa-handshake"></i>
-                        </div>
-                        <h4 data-en="Industry Partnerships" data-de="Industriepartnerschaften">Industry Partnerships</h4>
-                        <p data-en="Connecting students with leading companies for internships and career opportunities" data-de="Vernetzung von Studenten mit führenden Unternehmen für Praktika und Karrieremöglichkeiten">Connecting students with leading companies for internships and career opportunities</p>
-                    </div>
-                    
-                    <div class="vision-card">
-                        <div class="vision-icon">
-                            <i class="fas fa-globe-europe"></i>
-                        </div>
-                        <h4 data-en="Cultural Exchange" data-de="Kultureller Austausch">Cultural Exchange</h4>
-                        <p data-en="Promoting Indian culture while embracing German traditions through collaborative events" data-de="Förderung der indischen Kultur und gleichzeitige Einbeziehung deutscher Traditionen durch gemeinsame Veranstaltungen">Promoting Indian culture while embracing German traditions through collaborative events</p>
-                    </div>
-                    
-                    <div class="vision-card">
-                        <div class="vision-icon">
-                            <i class="fas fa-graduation-cap"></i>
-                        </div>
-                        <h4 data-en="Academic Excellence" data-de="Akademische Exzellenz">Academic Excellence</h4>
-                        <p data-en="Supporting student success through mentorship programs and study groups" data-de="Unterstützung des studentischen Erfolgs durch Mentoring-Programme und Lerngruppen">Supporting student success through mentorship programs and study groups</p>
-                    </div>
-                    
-                    <div class="vision-card">
-                        <div class="vision-icon">
-                            <i class="fas fa-users"></i>
-                        </div>
-                        <h4 data-en="Community Building" data-de="Gemeinschaftsbildung">Community Building</h4>
-                        <p data-en="Creating a supportive network for Indian students in Siegen" data-de="Aufbau eines unterstützenden Netzwerks für indische Studenten in Siegen">Creating a supportive network for Indian students in Siegen</p>
-                    </div>
-                    
-                    <div class="vision-card">
-                        <div class="vision-icon">
-                            <i class="fas fa-home"></i>
-                        </div>
-                        <h4 data-en="Cultural Center" data-de="Kulturzentrum">Cultural Center</h4>
-                        <p data-en="Establishing a dedicated space for Indian cultural activities" data-de="Einrichtung eines eigenen Raums für indische Kulturveranstaltungen">Establishing a dedicated space for Indian cultural activities</p>
-                    </div>
-                    
-                    <div class="vision-card">
-                        <div class="vision-icon">
-                            <i class="fas fa-hands-helping"></i>
-                        </div>
-                        <h4 data-en="Support System" data-de="Unterstützungssystem">Support System</h4>
-                        <p data-en="Providing comprehensive assistance for new students arriving in Germany" data-de="Umfassende Unterstützung für neue Studenten in Deutschland">Providing comprehensive assistance for new students arriving in Germany</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Services Section -->
-    <section id="services" class="services">
-        <h2 class="section-title" data-en="Our Services" data-de="Unsere Dienste">Our Services</h2>
-        <p class="section-subtitle" data-en="How we support our community" data-de="Wie wir unsere Gemeinschaft unterstützen">How we support our community</p>
-        
-        <div class="services-grid">
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="fas fa-user-friends"></i>
-                </div>
-                <h3 data-en="Orientation Program" data-de="Einführungsprogramm">Orientation Program</h3>
-                <p data-en="Comprehensive welcome program for new students including airport pickup and accommodation assistance" data-de="Umfassendes Willkommensprogramm für neue Studenten, inklusive Flughafenabholung und Hilfe bei der Unterkunftssuche">Comprehensive welcome program for new students including airport pickup and accommodation assistance</p>
+        <section id="services" class="main-section" style="background-color: #fafafa;">
+             <div class="container">
+                 <h2 class="section-header animate-on-scroll" data-key="servicesTitle">Community & Services</h2>
+                 <div class="grid-container animate-on-scroll" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+                     <div class="data-card service-card">
+                         <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                         <h3 data-key="service1Title">SISA WhatsApp Group</h3>
+                         <p data-key="service1Desc">Join our main WhatsApp group to stay updated on all events, ask questions, and connect with the community.</p>
+                         <a href="#" class="cta-button" data-key="joinNow">Join Now</a>
+                     </div>
+                     <div class="data-card service-card">
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8"/><path d="M10 18H2"/><path d="M15 13v-2a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v10a2 2 0 0 1-2-2h-4a2 2 0 0 1-2-2v-2"/><path d="m22 12-4.5 4.5-2-2"/></svg>
+                        <h3 data-key="embassySubTitle">Embassy of India</h3>
+                        <p data-key="service2Desc">Access the official website of the Embassy of India in Berlin for consular services and important announcements.</p>
+                        <a href="https://www.indianembassyberlin.gov.in/" target="_blank" class="cta-button" data-key="embassyBtn">Visit Website</a>
+                     </div>
+                     <div class="data-card service-card">
+                         <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                         <h3 data-key="service3Title">Jobs & Internships</h3>
+                         <p data-key="service3Desc">A dedicated group for sharing part-time job openings, internship opportunities, and career advice in the Siegen area.</p>
+                         <a href="#" class="cta-button" data-key="joinNow">Join Now</a>
+                     </div>
+                 </div>
             </div>
-            
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="fas fa-book"></i>
-                </div>
-                <h3 data-en="Academic Support" data-de="Akademische Unterstützung">Academic Support</h3>
-                <p data-en="Study groups, exam preparation workshops, and tutoring sessions" data-de="Lerngruppen, Prüfungsvorbereitungsworkshops und Nachhilfe">Study groups, exam preparation workshops, and tutoring sessions</p>
-            </div>
-            
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="fas fa-briefcase"></i>
-                </div>
-                <h3 data-en="Career Development" data-de="Karriereentwicklung">Career Development</h3>
-                <p data-en="Resume workshops, interview preparation, and networking events" data-de="Lebenslauf-Workshops, Vorbereitung auf Vorstellungsgespräche und Networking-Veranstaltungen">Resume workshops, interview preparation, and networking events</p>
-            </div>
-            
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="fas fa-utensils"></i>
-                </div>
-                <h3 data-en="Cultural Events" data-de="Kulturelle Veranstaltungen">Cultural Events</h3>
-                <p data-en="Celebration of Indian festivals with traditional food, music, and performances" data-de="Feier indischer Feste mit traditionellem Essen, Musik und Aufführungen">Celebration of Indian festivals with traditional food, music, and performances</p>
-            </div>
-            
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="fas fa-passport"></i>
-                </div>
-                <h3 data-en="Visa Assistance" data-de="Visahilfe">Visa Assistance</h3>
-                <p data-en="Guidance with visa extensions, work permits, and documentation" data-de="Beratung bei Visumverlängerungen, Arbeitserlaubnissen und Dokumentation">Guidance with visa extensions, work permits, and documentation</p>
-            </div>
-            
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="fas fa-hands-helping"></i>
-                </div>
-                <h3 data-en="Mentorship Program" data-de="Mentoring-Programm">Mentorship Program</h3>
-                <p data-en="Pairing new students with experienced seniors for guidance" data-de="Vermittlung neuer Studenten an erfahrene Ältere zur Betreuung">Pairing new students with experienced seniors for guidance</p>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Board Section -->
-    <section id="board" class="board">
-        <h2 class="section-title" data-en="Our Leadership" data-de="Unsere Leitung">Our Leadership</h2>
-        <p class="section-subtitle" data-en="The team driving our vision forward" data-de="Das Team, das unsere Vision vorantreibt">The team driving our vision forward</p>
+        <section id="embassy-help" class="main-section">
+            <div class="container">
+                 <h2 class="section-header animate-on-scroll" data-key="embassyHelpTitle">Embassy Assistance</h2>
+                 <div class="data-card embassy-card animate-on-scroll" style="text-align:center;">
+                     <h3 data-key="embassyHelpSubTitle">Need Guidance with Official Matters?</h3>
+                     <p data-key="embassyHelpText">While SISA is not an official government body, we can help guide you to the right resources for embassy-related queries like passports, visas, or OCI cards. If you need help understanding a process, open a request, and a board member will try to assist.</p>
+                     <button id="open-embassy-help-modal-btn" class="cta-button" data-key="requestGuidance">Request Guidance</button>
+                 </div>
+            </div>
+        </section>
         
-        <h3 class="section-subtitle" style="text-align: center; color: var(--accent); margin-bottom: 3rem;" data-en="Advisory Board" data-de="Beirat">Advisory Board</h3>
-        <div class="board-container">
-            <div class="board-card">
-                <div class="board-image">PD</div>
-                <h3>Prof. Dr. Anil Sharma</h3>
-                <div class="board-role" data-en="Faculty Advisor" data-de="Fakultätsberater">Faculty Advisor</div>
-                <p data-en="Professor of Computer Science with 15 years of experience mentoring international students" data-de="Professor für Informatik mit 15 Jahren Erfahrung in der Betreuung internationaler Studierender">Professor of Computer Science with 15 years of experience mentoring international students</p>
-            </div>
-            
-            <div class="board-card">
-                <div class="board-image">RS</div>
-                <h3>Dr. Riya Singh</h3>
-                <div class="board-role" data-en="Cultural Coordinator" data-de="Kulturkoordinator">Cultural Coordinator</div>
-                <p data-en="Expert in intercultural communication and event planning" data-de="Expertin für interkulturelle Kommunikation und Veranstaltungsplanung">Expert in intercultural communication and event planning</p>
-            </div>
-            
-            <div class="board-card">
-                <div class="board-image">VM</div>
-                <h3>Vikram Mehta</h3>
-                <div class="board-role" data-en="Industry Liaison" data-de="Industriekontakt">Industry Liaison</div>
-                <p data-en="Senior HR Manager at Siemens with a passion for student development" data-de="Senior HR-Manager bei Siemens mit Leidenschaft für die Entwicklung von Studierenden">Senior HR Manager at Siemens with a passion for student development</p>
-            </div>
-        </div>
-        
-        <h3 class="section-subtitle" style="text-align: center; color: var(--accent); margin: 5rem 0 3rem;" data-en="Student Board (2025)" data-de="Studentischer Vorstand (2025)">Student Board (2025)</h3>
-        <div class="board-container">
-            <div class="board-card">
-                <div class="board-image">AK</div>
-                <h3>Aarav Kumar</h3>
-                <div class="board-role" data-en="President" data-de="Präsident">President</div>
-                <p data-en="Masters in Mechanical Engineering, passionate about community building" data-de="Master in Maschinenbau, leidenschaftlich am Gemeinschaftsaufbau interessiert">Masters in Mechanical Engineering, passionate about community building</p>
-            </div>
-            
-            <div class="board-card">
-                <div class="board-image">PD</div>
-                <h3>Priya Desai</h3>
-                <div class="board-role" data-en="Vice President" data-de="Vizepräsidentin">Vice President</div>
-                <p data-en="PhD candidate in Biotechnology, organizes academic workshops" data-de="Promotionsstudentin in Biotechnologie, organisiert akademische Workshops">PhD candidate in Biotechnology, organizes academic workshops</p>
-            </div>
-            
-            <div class="board-card">
-                <div class="board-image">RM</div>
-                <h3>Rohan Mehra</h3>
-                <div class="board-role" data-en="Treasurer" data-de="Schatzmeister">Treasurer</div>
-                <p data-en="Masters in Business Administration, manages club finances" data-de="Master in Betriebswirtschaft, verwaltet die Vereinsfinanzen">Masters in Business Administration, manages club finances</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Events Section -->
-    <section id="events" class="events">
-        <h2 class="section-title" data-en="Upcoming Events" data-de="Kommende Veranstaltungen">Upcoming Events</h2>
-        <p class="section-subtitle" data-en="Join us for these exciting activities" data-de="Nehmen Sie an diesen spannenden Aktivitäten teil">Join us for these exciting activities</p>
-        
-        <div class="events-container">
-            <div class="event-card">
-                <div class="event-image" style="background: url('https://images.unsplash.com/photo-1603383928958-c8a7a07e8143?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');">
-                    <div class="event-date" data-en="15 SEP 2025" data-de="15. SEP 2025">15 SEP 2025</div>
-                </div>
-                <div class="event-content">
-                    <h3 class="event-title" data-en="Diwali Celebration" data-de="Diwali-Feier">Diwali Celebration</h3>
-                    <div class="event-details">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span data-en="University of Siegen Campus" data-de="Campus der Universität Siegen">University of Siegen Campus</span>
-                    </div>
-                    <div class="event-details">
-                        <i class="fas fa-clock"></i>
-                        <span data-en="6:00 PM - 10:00 PM" data-de="18:00 - 22:00 Uhr">6:00 PM - 10:00 PM</span>
-                    </div>
-                    <p data-en="Join us for our first Diwali celebration! Traditional food, music, dance performances, and lighting of diyas." data-de="Nehmen Sie an unserer ersten Diwali-Feier teil! Traditionelles Essen, Musik, Tanzdarbietungen und das Anzünden von Diyas.">Join us for our first Diwali celebration! Traditional food, music, dance performances, and lighting of diyas.</p>
-                </div>
-            </div>
-            
-            <div class="event-card">
-                <div class="event-image" style="background: url('https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');">
-                    <div class="event-date" data-en="28 SEP 2025" data-de="28. SEP 2025">28 SEP 2025</div>
-                </div>
-                <div class="event-content">
-                    <h3 class="event-title" data-en="Career Workshop" data-de="Karriere-Workshop">Career Workshop</h3>
-                    <div class="event-details">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span data-en="Auditorium, AR Building" data-de="Auditorium, AR-Gebäude">Auditorium, AR Building</span>
-                    </div>
-                    <div class="event-details">
-                        <i class="fas fa-clock"></i>
-                        <span data-en="2:00 PM - 5:00 PM" data-de="14:00 - 17:00 Uhr">2:00 PM - 5:00 PM</span>
-                    </div>
-                    <p data-en="Learn how to navigate the German job market. Resume building, interview preparation, and networking strategies." data-de="Erfahren Sie, wie Sie sich auf dem deutschen Arbeitsmarkt zurechtfinden. Lebenslaufgestaltung, Vorbereitung auf Vorstellungsgespräche und Networking-Strategien.">Learn how to navigate the German job market. Resume building, interview preparation, and networking strategies.</p>
-                </div>
-            </div>
-            
-            <div class="event-card">
-                <div class="event-image" style="background: url('https://images.unsplash.com/photo-1531415074968-036ba1b575da?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');">
-                    <div class="event-date" data-en="12 OCT 2025" data-de="12. OKT 2025">12 OCT 2025</div>
-                </div>
-                <div class="event-content">
-                    <h3 class="event-title" data-en="Cricket Tournament" data-de="Cricket-Turnier">Cricket Tournament</h3>
-                    <div class="event-details">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span data-en="Leimbachstadion" data-de="Leimbachstadion">Leimbachstadion</span>
-                    </div>
-                    <div class="event-details">
-                        <i class="fas fa-clock"></i>
-                        <span data-en="10:00 AM - 4:00 PM" data-de="10:00 - 16:00 Uhr">10:00 AM - 4:00 PM</span>
-                    </div>
-                    <p data-en="Our first annual cricket tournament! Form your teams and compete for the championship trophy." data-de="Unser erstes jährliches Cricket-Turnier! Bilden Sie Ihre Teams und kämpfen Sie um die Meisterschaftstrophäe.">Our first annual cricket tournament! Form your teams and compete for the championship trophy.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Gallery Section -->
-    <section id="gallery" class="gallery">
-        <h2 class="section-title" data-en="Our Moments" data-de="Unsere Momente">Our Moments</h2>
-        <p class="section-subtitle" data-en="Capturing memories from our events" data-de="Erinnerungen an unsere Veranstaltungen">Capturing memories from our events</p>
-        
-        <div class="gallery-container">
-            <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');">
-                <i class="fas fa-search-plus"></i>
-            </div>
-            <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');">
-                <i class="fas fa-search-plus"></i>
-            </div>
-            <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');">
-                <i class="fas fa-search-plus"></i>
-            </div>
-            <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');">
-                <i class="fas fa-search-plus"></i>
-            </div>
-            <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');">
-                <i class="fas fa-search-plus"></i>
-            </div>
-            <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');">
-                <i class="fas fa-search-plus"></i>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="about">
-        <h2 class="section-title" data-en="Get In Touch" data-de="Kontaktieren Sie uns">Get In Touch</h2>
-        <p class="section-subtitle" data-en="We'd love to hear from you" data-de="Wir freuen uns von Ihnen zu hören">We'd love to hear from you</p>
-        
-        <div class="about-content">
-            <div class="card">
-                <h3><i class="fas fa-envelope"></i> <span data-en="Contact Information" data-de="Kontaktinformationen">Contact Information</span></h3>
-                <div style="display: flex; flex-wrap: wrap; gap: 2rem; margin-top: 2rem;">
-                    <div style="flex: 1; min-width: 250px;">
-                        <h4 style="margin-bottom: 1rem; color: var(--accent);" data-en="Our Office" data-de="Unser Büro">Our Office</h4>
-                        <p><i class="fas fa-map-marker-alt" style="color: var(--accent); margin-right: 10px;"></i> University of Siegen<br>Adolf-Reichwein-Straße 2<br>57076 Siegen</p>
-                    </div>
-                    <div style="flex: 1; min-width: 250px;">
-                        <h4 style="margin-bottom: 1rem; color: var(--accent);" data-en="Contact Details" data-de="Kontaktdetails">Contact Details</h4>
-                        <p><i class="fas fa-envelope" style="color: var(--accent); margin-right: 10px;"></i> contact@sisa-siegen.de</p>
-                        <p><i class="fas fa-phone" style="color: var(--accent); margin-right: 10px;"></i> +49 271 740-4912</p>
-                    </div>
-                </div>
-                <div style="margin-top: 2rem;">
-                    <h4 style="margin-bottom: 1rem; color: var(--accent);" data-en="Office Hours" data-de="Bürozeiten">Office Hours</h4>
-                    <p><i class="fas fa-clock" style="color: var(--accent); margin-right: 10px;"></i> <span data-en="Monday-Friday: 10:00 AM - 4:00 PM" data-de="Montag-Freitag: 10:00 - 16:00 Uhr">Monday-Friday: 10:00 AM - 4:00 PM</span></p>
-                </div>
-            </div>
-            
-            <div class="card">
-                <h3><i class="fas fa-paper-plane"></i> <span data-en="Send Us a Message" data-de="Senden Sie uns eine Nachricht">Send Us a Message</span></h3>
-                <form style="margin-top: 1.5rem;">
-                    <div style="display: flex; gap: 1.5rem; margin-bottom: 1.5rem;">
-                        <div style="flex: 1;">
-                            <label for="name" style="display: block; margin-bottom: 0.5rem; font-weight: 600;" data-en="Full Name" data-de="Vollständiger Name">Full Name</label>
-                            <input type="text" id="name" required style="width: 100%; padding: 1rem; border: 1px solid var(--border); border-radius: 8px; background: var(--card); color: var(--text);">
+        <section id="events" class="main-section">
+            <div class="container">
+                <h2 class="section-header animate-on-scroll" data-key="eventsTitle">UPCOMING EVENTS</h2>
+                <div class="grid-container events-card-grid">
+                    <div class="data-card event-card animate-on-scroll">
+                        <div class="event-card-main">
+                            <div>
+                                <h3 data-key="event1Title">DIWALI NIGHT 2025</h3>
+                                <div class="event-location-time">
+                                    <div><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Audimax, Uni-Siegen</div>
+                                    <div><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>October 25, 18:00</div>
+                                </div>
+                            </div>
+                            <div class="expand-icon-wrapper">
+                                <svg class="expand-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                            </div>
                         </div>
-                        <div style="flex: 1;">
-                            <label for="email" style="display: block; margin-bottom: 0.5rem; font-weight: 600;" data-en="Email Address" data-de="E-Mail-Adresse">Email Address</label>
-                            <input type="email" id="email" required style="width: 100%; padding: 1rem; border: 1px solid var(--border); border-radius: 8px; background: var(--card); color: var(--text);">
+                        <div class="event-details-full">
+                            <p data-key="event1DescFull">Join our grand celebration of the festival of lights! Experience a magical evening filled with traditional music, vibrant dance performances, and delicious Indian sweets. Tickets will be available online one month prior to the event.</p>
+                            <button class="register-btn" data-key="registerNow">Register Now</button>
                         </div>
                     </div>
-                    <div style="margin-bottom: 1.5rem;">
-                        <label for="subject" style="display: block; margin-bottom: 0.5rem; font-weight: 600;" data-en="Subject" data-de="Betreff">Subject</label>
-                        <input type="text" id="subject" required style="width: 100%; padding: 1rem; border: 1px solid var(--border); border-radius: 8px; background: var(--card); color: var(--text);">
-                    </div>
-                    <div style="margin-bottom: 1.5rem;">
-                        <label for="message" style="display: block; margin-bottom: 0.5rem; font-weight: 600;" data-en="Your Message" data-de="Ihre Nachricht">Your Message</label>
-                        <textarea id="message" required style="width: 100%; min-height: 150px; padding: 1rem; border: 1px solid var(--border); border-radius: 8px; background: var(--card); color: var(--text);"></textarea>
-                    </div>
-                    <button type="submit" style="background: var(--accent); color: var(--bg); border: none; padding: 1.2rem 2.5rem; border-radius: 50px; font-weight: 600; font-size: 1.1rem; cursor: pointer; transition: var(--transition);" data-en="Send Message" data-de="Nachricht senden">Send Message</button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-container">
-            <div class="footer-col">
-                <div class="logo" style="margin-bottom: 1.5rem;">
-                    <div class="logo-icon">S</div>
-                    <div class="logo-text">S<span style="color: var(--accent);">I</span>SA</div>
-                </div>
-                <p data-en="Siegen Indian Student Association - Connecting cultures since 2025" data-de="Siegen Indian Student Association - Verbindet Kulturen seit 2025">Siegen Indian Student Association - Connecting cultures since 2025</p>
-                <div class="social-icons">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
                 </div>
             </div>
-            
-            <div class="footer-col">
-                <h4 data-en="Quick Links" data-de="Schnelllinks">Quick Links</h4>
-                <ul>
-                    <li><a href="#about"><i class="fas fa-chevron-right"></i> <span data-en="About Us" data-de="Über uns">About Us</span></a></li>
-                    <li><a href="#services"><i class="fas fa-chevron-right"></i> <span data-en="Services" data-de="Dienste">Services</span></a></li>
-                    <li><a href="#board"><i class="fas fa-chevron-right"></i> <span data-en="Leadership" data-de="Leitung">Leadership</span></a></li>
-                    <li><a href="#events"><i class="fas fa-chevron-right"></i> <span data-en="Events" data-de="Veranstaltungen">Events</span></a></li>
-                    <li><a href="#contact"><i class="fas fa-chevron-right"></i> <span data-en="Contact" data-de="Kontakt">Contact</span></a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-col">
-                <h4 data-en="Contact Info" data-de="Kontaktinformation">Contact Info</h4>
-                <ul>
-                    <li><i class="fas fa-map-marker-alt"></i> University of Siegen</li>
-                    <li><i class="fas fa-envelope"></i> contact@sisa-siegen.de</li>
-                    <li><i class="fas fa-phone"></i> +49 271 740-4912</li>
-                    <li><i class="fas fa-clock"></i> <span data-en="Mon-Fri: 10AM - 4PM" data-de="Mo-Fr: 10-16 Uhr">Mon-Fri: 10AM - 4PM</span></li>
-                </ul>
-            </div>
-        </div>
+        </section>
         
-        <div class="copyright">
-            &copy; 2025 SISA - <span data-en="Siegen Indian Student Association" data-de="Siegener Indische Studentenvereinigung">Siegen Indian Student Association</span>. <span data-en="All Rights Reserved" data-de="Alle Rechte vorbehalten">All Rights Reserved</span>.
-        </div>
+        <section id="leadership" class="main-section">
+            <div class="container">
+                <h2 class="section-header animate-on-scroll" data-key="leadershipTitle">LEADERSHIP</h2>
+                <h3 class="subsection-header animate-on-scroll" data-key="advisoryBoard">ADVISORY BOARD</h3>
+                <div class="grid-container person-card-grid">
+                    <div class="data-card person-card animate-on-scroll"><div class="placeholder-img" style="background-image: url(https://picsum.photos/seed/sisa-advisor-1/300/300)"></div><h4>Dr. Anika Sharma</h4><p data-key="advisor1Role">University Liaison</p></div>
+                    <div class="data-card person-card animate-on-scroll"><div class="placeholder-img" style="background-image: url(https://picsum.photos/seed/sisa-advisor-2/300/300)"></div><h4>Mr. Raj Patel</h4><p data-key="advisor2Role">Industry Connect</p></div>
+                    <div class="data-card person-card animate-on-scroll"><div class="placeholder-img" style="background-image: url(https://picsum.photos/seed/sisa-advisor-3/300/300)"></div><h4>Prof. Klaus Richter</h4><p data-key="advisor3Role">Faculty Advisor</p></div>
+                </div>
+                <h3 class="subsection-header animate-on-scroll" data-key="studentBoard">STUDENT BOARD 2025</h3>
+                 <div class="grid-container person-card-grid">
+                    <div class="data-card person-card animate-on-scroll"><div class="placeholder-img" style="background-image: url(https://picsum.photos/seed/sisa-student-1/300/300)"></div><h4>Priya Singh</h4><p data-key="student1Role">President</p></div>
+                    <div class="data-card person-card animate-on-scroll"><div class="placeholder-img" style="background-image: url(https://picsum.photos/seed/sisa-student-2/300/300)"></div><h4>Amit Kumar</h4><p data-key="student2Role">Vice President</p></div>
+                    <div class="data-card person-card animate-on-scroll"><div class="placeholder-img" style="background-image: url(https://picsum.photos/seed/sisa-student-3/300/300)"></div><h4>Sneha Verma</h4><p data-key="student3Role">Treasurer</p></div>
+                    <div class="data-card person-card animate-on-scroll"><div class="placeholder-img" style="background-image: url(https://picsum.photos/seed/sisa-student-4/300/300)"></div><h4>Rohan Mehta</h4><p data-key="student4Role">Secretary</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonials" class="main-section">
+            <div class="container">
+                <h2 class="section-header animate-on-scroll" data-key="testimonialsTitle">FROM OUR COMMUNITY</h2>
+                <div class="grid-container testimonial-card-grid">
+                    <div class="data-card testimonial-card animate-on-scroll">
+                        <blockquote data-key="testimonial1Text">"SISA's Diwali event was incredible! It felt just like home. It's amazing to have such a vibrant community here in Siegen."</blockquote>
+                        <footer>Priya K.<span data-key="testimonial1Role">M.Sc. Student</span></footer>
+                    </div>
+                     <div class="data-card testimonial-card animate-on-scroll">
+                         <blockquote data-key="testimonial2Text">"As a newcomer to Germany, the support from SISA was invaluable. Their workshops helped me settle in and connect with people."</blockquote>
+                        <footer>Rohan M.<span data-key="testimonial2Role">IT Professional</span></footer>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="gallery" class="main-section">
+            <div class="container">
+                <h2 class="section-header animate-on-scroll" data-key="galleryTitle">GALLERY</h2>
+                <div class="grid-container gallery-preview-grid">
+                    <div class="gallery-item animate-on-scroll" data-category="events"><img src="https://picsum.photos/seed/sisa-gallery-1/400/300" alt="SISA Event Photo"></div>
+                    <div class="gallery-item animate-on-scroll" data-category="city"><img src="https://picsum.photos/seed/sisa-gallery-2/400/300" alt="Siegen City Photo"></div>
+                    <div class="gallery-item animate-on-scroll" data-category="university"><img src="https://picsum.photos/seed/sisa-gallery-3/400/300" alt="University Photo"></div>
+                    <div class="gallery-item animate-on-scroll" data-category="events"><img src="https://picsum.photos/seed/sisa-gallery-4/400/300" alt="SISA Event Photo"></div>
+                </div>
+                <div class="view-gallery-container">
+                    <button id="view-gallery-btn" class="cta-button animate-on-scroll" data-key="viewGallery">View Full Gallery</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="main-section">
+            <div class="container">
+                <h2 class="section-header animate-on-scroll" data-key="contactTitle">GET IN TOUCH</h2>
+                <div class="grid-container contact-grid">
+                    <div class="contact-info animate-on-scroll">
+                        <h3 data-key="contactSubTitle">QUESTIONS, IDEAS, OR WANT TO GET INVOLVED?</h3>
+                        <p data-key="contactText">We would love to hear from you. Whether you have a question about an event, a suggestion for the community, or want to become a part of our team, don't hesitate to send us a message using the form. We'll get back to you as soon as possible.</p>
+                    </div>
+                    <form id="contact-form" class="contact-form animate-on-scroll">
+                        <div class="form-group">
+                            <label for="name" data-key="formName">NAME</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" data-key="formEmail">EMAIL</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message" data-key="formMessage">MESSAGE</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn" data-key="formSubmit">SEND MESSAGE</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+
+    <footer class="main-footer">
+       <div class="container">
+           <div class="footer-grid">
+               <div class="footer-col">
+                   <h4>SISA.</h4>
+                   <p data-key="footerSlogan">Siegen Indian Students Association</p>
+               </div>
+                <div class="footer-col">
+                   <h4 data-key="navLinks">NAVIGATE</h4>
+                   <p><a href="#about" data-key="navAbout">About</a><br>
+                      <a href="#events" data-key="navEvents">Events</a><br>
+                      <a href="#leadership" data-key="navLeadership">Leadership</a><br>
+                      <a href="#testimonials" data-key="navTestimonials">Testimonials</a><br>
+                      <a href="#gallery" data-key="navGallery">Gallery</a><br>
+                      <a href="#contact" data-key="contactUs">Contact Us</a>
+                   </p>
+               </div>
+               <div class="footer-col">
+                    <h4 data-key="legal">LEGAL</h4>
+                    <p><a href="#" data-key="footerPrivacy">Privacy Policy</a><br>
+                       <a href="#" data-key="footerTerms">Terms of Service</a></p>
+               </div>
+               <div class="footer-col">
+                    <h4 data-key="localTime">LOCAL TIME</h4>
+                    <div class="live-time-widget-footer">
+                        <div id="footer-live-date" class="date"></div>
+                        <div id="footer-live-time" class="time"></div>
+                    </div>
+               </div>
+           </div>
+           <div class="footer-bottom">
+               <p data-key="footerRights">&copy; 2025 SISA. All rights reserved.</p>
+           </div>
+       </div>
     </footer>
+    
+    <div id="gallery-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="gallery-filters">
+                    <button class="filter-btn active" data-filter="all" data-key="galleryAll">All</button>
+                    <button class="filter-btn" data-filter="events" data-key="galleryEvents">Events</button>
+                    <button class="filter-btn" data-filter="city" data-key="galleryCity">City Life</button>
+                    <button class="filter-btn" data-filter="university" data-key="galleryUniversity">University</button>
+                </div>
+                <button id="close-gallery-modal-btn" class="close-modal-btn" title="Close" data-key="close">CLOSE</button>
+            </div>
+            <div class="modal-body full-gallery-grid"></div>
+        </div>
+    </div>
+
+    <div id="registration-modal" class="modal modal-form">
+        <div class="modal-content">
+             <div class="modal-header">
+                <h2 data-key="registerNowModal">Register for Event</h2>
+                <button class="close-modal-btn" data-modal-close data-key="close">CLOSE</button>
+             </div>
+             <div class="modal-body">
+                <h3 id="event-title-modal"></h3>
+                <form id="registration-form" class="contact-form" style="border: none; padding: 0; padding-top: 1rem;">
+                    <div class="form-group">
+                        <label for="reg-name" data-key="formName">NAME</label>
+                        <input type="text" id="reg-name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-email" data-key="formEmail">EMAIL</label>
+                        <input type="email" id="reg-email" name="email" required>
+                    </div>
+                    <button type="submit" class="submit-btn" data-key="formSubmit">SUBMIT REGISTRATION</button>
+                </form>
+             </div>
+        </div>
+    </div>
+    
+    <div id="embassy-help-modal" class="modal modal-form">
+        <div class="modal-content">
+             <div class="modal-header">
+                <h2 data-key="embassyHelpModalTitle">Embassy Assistance Request</h2>
+                <button class="close-modal-btn" data-modal-close data-key="close">CLOSE</button>
+             </div>
+             <div class="modal-body">
+                <p data-key="embassyHelpModalDesc">Please fill out this form with your query. A SISA board member will review it and provide guidance on how to proceed with the official embassy channels. **This is not an official request to the embassy.**</p>
+                <form id="embassy-help-form" class="contact-form" style="border: none; padding: 0; padding-top: 1rem;">
+                    <div class="form-group">
+                        <label for="help-name" data-key="formName">NAME</label>
+                        <input type="text" id="help-name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="help-email" data-key="formEmail">EMAIL</label>
+                        <input type="email" id="help-email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="help-type" data-key="assistanceType">TYPE OF ASSISTANCE</label>
+                        <select id="help-type" name="assistance_type" required>
+                            <option value="Passport" data-key="typePassport">Passport Services</option>
+                            <option value="Visa" data-key="typeVisa">Visa Services</option>
+                            <option value="OCI" data-key="typeOCI">OCI Card</option>
+                            <option value="Other" data-key="typeOther">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="help-message" data-key="formMessage">BRIEF DESCRIPTION OF YOUR QUERY</label>
+                        <textarea id="help-message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn" data-key="formSubmit">SUBMIT REQUEST</button>
+                </form>
+             </div>
+        </div>
+    </div>
 
     <script>
-        // Theme toggle functionality
-        const themeToggle = document.getElementById('themeToggle');
-        const body = document.body;
-        
-        // Check for saved theme preference
-        const currentTheme = localStorage.getItem('theme');
-        if (currentTheme === 'dark') {
-            body.classList.add('dark-mode');
-            body.classList.add('dark-mode');
-        } else {
-            body.classList.add('light-mode');
-        }
-        
-        themeToggle.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
-            body.classList.toggle('light-mode');
-            
-            // Save theme preference
-            if (body.classList.contains('dark-mode')) {
-                localStorage.setItem('theme', 'dark');
-            } else {
-                localStorage.setItem('theme', 'light');
-            }
-        });
-        
-        // Language toggle functionality
-        const langToggle = document.getElementById('langToggle');
-        let currentLang = 'en'; // Default language
-        
-        langToggle.addEventListener('click', () => {
-            currentLang = currentLang === 'en' ? 'de' : 'en';
-            updateLanguage(currentLang);
-        });
-        
-        function updateLanguage(lang) {
-            // Update all elements with data attributes
-            document.querySelectorAll('[data-en], [data-de]').forEach(element => {
-                if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
-                    element.placeholder = element.getAttribute(`data-${lang}`);
-                } else {
-                    if (element.hasAttribute(`data-${lang}`)) {
-                        if (element.classList.contains('logo-text') || 
-                            element.classList.contains('hero-highlight') || 
-                            element.classList.contains('section-title')) {
-                            // Handle HTML content
-                            element.innerHTML = element.getAttribute(`data-${lang}`);
-                        } else {
-                            element.textContent = element.getAttribute(`data-${lang}`);
-                        }
-                    }
-                }
-            });
-        }
-        
-        // Header scroll effect
-        window.addEventListener('scroll', function() {
-            const header = document.getElementById('header');
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
+        'use strict';
+        document.addEventListener('DOMContentLoaded', function() {
 
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
+            // --- COMPLETE AND FUNCTIONAL JAVASCRIPT ---
+
+            const translations = {
+                en: {
+                    navAbout: "About", navServices: "Services", navEvents: "Events", navLeadership: "Leadership", navTestimonials: "Testimonials", navGallery: "Gallery", contactUs: "Contact Us", navLinks: "Navigate",
+                    scroll: "SCROLL", hero1: "CONNECTION.", hero2: "CULTURE.", hero3: "COMMUNITY.",
+                    aboutTitle: "ABOUT SISA.", ourVision: "Our Vision",
+                    whatWeDo1: "Cultural Events", whatWeDo1Desc: "From vibrant Diwali nights to colorful Holi celebrations, we bring the spirit of Indian festivals to Siegen.",
+                    whatWeDo2: "Career Networking", whatWeDo2Desc: "We connect students and professionals with industry leaders through workshops and networking events.",
+                    whatWeDo3: "Integration Support", whatWeDo3Desc: "We provide practical support, from language tandems to informational sessions on life in Germany.",
+                    whatWeDo4: "Community Building", whatWeDo4Desc: "Our core goal is to build a strong, interconnected community through shared experiences and mutual support.",
+                    ourHistory: "OUR HISTORY",
+                    history1Date: "FEBRUARY 2025", history1Title: "The Idea is Born", history1Desc: "A small group of students at the University of Siegen gather, sharing a desire to create a stronger sense of community and a platform to celebrate shared culture far from home.",
+                    history2Date: "APRIL 2025", history2Title: "First Community Event", history2Desc: "SISA organizes its first event, a vibrant Holi celebration at a local park. The overwhelming turnout highlights the need for a formal association.",
+                    history3Date: "JUNE 2025", history3Title: "Official Founding", history3Desc: "With a clear mission and growing support, SISA is officially established, forming its first student board and advisory panel to serve the Indian community in Siegen.",
+                    servicesTitle: "Community & Services",
+                    service1Title: "SISA WhatsApp Group", service1Desc: "Join our main WhatsApp group to stay updated on all events, ask questions, and connect with the community.",
+                    embassySubTitle: "Embassy of India", service2Desc: "Access the official website of the Embassy of India in Berlin for consular services and important announcements.",
+                    service3Title: "Jobs & Internships", service3Desc: "A dedicated group for sharing part-time job openings, internship opportunities, and career advice.",
+                    joinNow: "Join Now", embassyBtn: "Visit Website",
+                    embassyHelpTitle: "Embassy Assistance", embassyHelpSubTitle: "Need Guidance with Official Matters?",
+                    embassyHelpText: "While SISA is not an official government body, we can help guide you to the right resources for embassy-related queries like passports, visas, or OCI cards. If you need help understanding a process, open a request, and a board member will try to assist.",
+                    requestGuidance: "Request Guidance",
+                    embassyHelpModalTitle: "Embassy Assistance Request",
+                    embassyHelpModalDesc: "Please fill out this form with your query. A SISA board member will review it and provide guidance on how to proceed with the official embassy channels. **This is not an official request to the embassy.**",
+                    assistanceType: "Type of Assistance", typePassport: "Passport Services", typeVisa: "Visa Services", typeOCI: "OCI Card", typeOther: "Other",
+                    eventsTitle: "UPCOMING EVENTS", registerNow: "Register Now",
+                    event1Title: "DIWALI NIGHT 2025", event1DescFull: "Join our grand celebration of the festival of lights! Experience a magical evening filled with traditional music, vibrant dance performances, and delicious Indian sweets. Tickets will be available online one month prior to the event.",
+                    event2Title: "CAREER WORKSHOP", event2DescFull: "A professional workshop for students and recent graduates on navigating the German job market. The session will feature guest speakers, a CV-check corner, and a Q&A panel.",
+                    event3Title: "CRICKET TOURNAMENT", event3DescFull: "Our annual SISA Cricket Cup is back! Form your teams and compete for glory. A day of friendly competition, food, and fun for players and spectators alike.",
+                    leadershipTitle: "LEADERSHIP", advisoryBoard: "ADVISORY BOARD", studentBoard: "STUDENT BOARD 2025",
+                    advisor1Role: "University Liaison", advisor2Role: "Industry Connect", advisor3Role: "Faculty Advisor",
+                    student1Role: "President", student2Role: "Vice President", student3Role: "Treasurer", student4Role: "Secretary", student5Role: "Events Head", student6Role: "Marketing Head", student7Role: "Cultural Head", student8Role: "Sports Head",
+                    testimonialsTitle: "FROM OUR COMMUNITY",
+                    galleryTitle: "GALLERY", galleryAll: "All", galleryEvents: "Events", galleryCity: "City Life", galleryUniversity: "University", viewGallery: "View Full Gallery", close: "CLOSE",
+                    contactTitle: "GET IN TOUCH", contactSubTitle: "QUESTIONS, IDEAS, OR WANT TO GET INVOLVED?",
+                    contactText: "We would love to hear from you. Whether you have a question about an event, a suggestion for the community, or want to become a part of our team, don't hesitate to send us a message using the form. We'll get back to you as soon as possible.",
+                    formName: "NAME", formEmail: "EMAIL", formMessage: "MESSAGE", formSubmit: "SEND MESSAGE",
+                    footerSlogan: "Siegen Indian Students Association", legal: "LEGAL", localTime: "LOCAL TIME",
+                    footerRights: "© 2025 SISA. All rights reserved.", footerPrivacy: "Privacy Policy", footerTerms: "Terms of Service",
+                    registerNowModal: "Register for Event"
+                },
+                de: {
+                    navAbout: "Über uns", navServices: "Dienste", navEvents: "Termine", navLeadership: "Leitung", navTestimonials: "Stimmen", navGallery: "Galerie", contactUs: "Kontakt", navLinks: "Navigation",
+                    scroll: "SCROLLEN", hero1: "VERBINDUNG.", hero2: "KULTUR.", hero3: "GEMEINSCHAFT.",
+                    aboutTitle: "ÜBER SISA.", ourVision: "Unsere Vision",
+                    whatWeDo1: "Kulturelle Events", whatWeDo1Desc: "Von lebhaften Diwali-Nächten bis zu Holi-Feiern bringen wir den Geist indischer Feste nach Siegen.",
+                    whatWeDo2: "Karriere-Networking", whatWeDo2Desc: "Wir vernetzen Studierende und Berufstätige mit Branchenführern durch Workshops und Events.",
+                    whatWeDo3: "Integrationshilfe", whatWeDo3Desc: "Wir bieten praktische Unterstützung, von Sprachtandems bis hin zu Informationsveranstaltungen.",
+                    ourHistory: "UNSERE GESCHICHTE",
+                    history1Date: "FEBRUAR 2025", history1Title: "Die Idee wird geboren", history1Desc: "Eine kleine Gruppe von Studierenden der Universität Siegen teilt den Wunsch, eine stärkere Gemeinschaft und eine Plattform zur Feier der gemeinsamen Kultur fern der Heimat zu schaffen.",
+                    history2Date: "APRIL 2025", history2Title: "Erstes Community-Event", history2Desc: "SISA organisiert sein erstes Event, eine lebhafte Holi-Feier in einem örtlichen Park. Die überwältigende Beteiligung unterstreicht den Bedarf an einem formellen Verein.",
+                    history3Date: "JUNI 2025", history3Title: "Offizielle Gründung", history3Desc: "Mit einer klaren Mission und wachsender Unterstützung wird SISA offiziell gegründet und bildet seinen ersten Studenten- und Beirat, um der indischen Gemeinschaft in Siegen zu dienen.",
+                    servicesTitle: "Gemeinschaft & Dienste",
+                    service1Title: "SISA WhatsApp-Gruppe", service1Desc: "Treten Sie unserer Haupt-WhatsApp-Gruppe bei, um über alle Veranstaltungen auf dem Laufenden zu bleiben und sich mit der Community zu verbinden.",
+                    embassySubTitle: "Indische Botschaft", service2Desc: "Besuchen Sie die offizielle Website der indischen Botschaft in Berlin für konsularische Dienste und wichtige Ankündigungen.",
+                    service3Title: "Jobs & Praktika", service3Desc: "Eine spezielle Gruppe zum Teilen von Teilzeitstellen, Praktikumsangeboten und Karrieretipps.",
+                    joinNow: "Jetzt beitreten", embassyBtn: "Website besuchen",
+                    embassyHelpTitle: "Botschaftshilfe", embassyHelpSubTitle: "Benötigen Sie Hilfe bei offiziellen Angelegenheiten?",
+                    embassyHelpText: "Obwohl SISA keine offizielle Regierungsstelle ist, können wir Ihnen helfen, die richtigen Ressourcen für botschaftsbezogene Anfragen zu finden. Wenn Sie Hilfe benötigen, öffnen Sie eine Anfrage.",
+                    requestGuidance: "Hilfe anfordern",
+                    embassyHelpModalTitle: "Botschaftshilfe-Anfrage",
+                    embassyHelpModalDesc: "Bitte füllen Sie dieses Formular aus. Ein SISA-Vorstandsmitglied wird es prüfen und Ihnen Orientierung geben. **Dies ist keine offizielle Anfrage an die Botschaft.**",
+                    assistanceType: "Art der Hilfe", typePassport: "Passdienste", typeVisa: "Visadienste", typeOCI: "OCI-Karte", typeOther: "Andere",
+                    eventsTitle: "KOMMENDE TERMINE", registerNow: "Jetzt registrieren",
+                    event1Title: "DIWALI-NACHT 2025", event1DescFull: "Nehmen Sie an unserer großen Feier des Lichterfestes teil! Erleben Sie einen magischen Abend mit traditioneller Musik, Tanzvorführungen und köstlichen indischen Süßigkeiten.",
+                    event2Title: "KARRIERE-WORKSHOP", event2DescFull: "Ein professioneller Workshop für Studierende und Absolventen zur Orientierung auf dem deutschen Arbeitsmarkt mit Gastrednern, einem Lebenslauf-Check und einer Fragerunde.",
+                    event3Title: "CRICKET-TURNIER", event3DescFull: "Unser jährlicher SISA Cricket Cup ist zurück! Bilden Sie Ihre Teams und kämpfen Sie um den Ruhm.",
+                    leadershipTitle: "LEITUNG", advisoryBoard: "BEIRAT", studentBoard: "STUDENTENRAT 2025",
+                    advisor1Role: "Hochschulverbindung", advisor2Role: "Industriekontakt", advisor3Role: "Fakultätsberater",
+                    student1Role: "Präsident/in", student2Role: "Vizepräsident/in", student3Role: "Schatzmeister/in", student4Role: "Schriftführer/in", student5Role: "Eventleitung", student6Role: "Marketingleitung", student7Role: "Kulturleitung", student8Role: "Sportleitung",
+                    testimonialsTitle: "AUS UNSERER GEMEINSCHAFT",
+                    galleryTitle: "GALERIE", galleryAll: "Alle", galleryEvents: "Events", galleryCity: "Stadtleben", galleryUniversity: "Universität", viewGallery: "Vollständige Galerie ansehen", close: "SCHLIESSEN",
+                    contactTitle: "KONTAKT", contactSubTitle: "FRAGEN, IDEEN ODER LUST MICHZUMACHEN?",
+                    contactText: "Wir würden uns freuen, von Ihnen zu hören. Ob Sie eine Frage zu einer Veranstaltung haben, einen Vorschlag für die Community oder Teil unseres Teams werden möchten, zögern Sie nicht, uns über das Formular eine Nachricht zu senden.",
+                    formName: "NAME", formEmail: "E-MAIL", formMessage: "NACHRICHT", formSubmit: "NACHRICHT SENDEN",
+                    footerSlogan: "Siegen Indian Students Association", legal: "RECHTLICHES", localTime: "LOKALE UHRZEIT",
+                    footerRights: "© 2025 SISA. Alle Rechte vorbehalten.", footerPrivacy: "Datenschutz", footerTerms: "Nutzungsbedingungen",
+                    registerNowModal: "Für Event registrieren"
+                }
+            };
+            
+            function updateTime() {
+                const timeWidget = document.getElementById('footer-live-time');
+                const dateWidget = document.getElementById('footer-live-date');
+                const now = new Date();
+                const timeOptions = { timeZone: 'Europe/Berlin', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+                const dateOptions = { timeZone: 'Europe/Berlin', year: 'numeric', month: 'short', day: 'numeric' };
+                if(timeWidget) timeWidget.textContent = now.toLocaleTimeString('en-GB', timeOptions);
+                if(dateWidget) dateWidget.textContent = now.toLocaleDateString('en-GB', dateOptions).toUpperCase();
+            }
+            updateTime();
+            setInterval(updateTime, 1000);
+
+            const scrollAffordance = document.querySelector('.scroll-down-affordance');
+            window.addEventListener('scroll', () => {
+                scrollAffordance.classList.toggle('hidden', window.scrollY > 20);
+            }, { passive: true });
+            
+            let currentLang = 'en';
+            function setLanguage(lang) {
+                currentLang = lang;
+                document.documentElement.lang = lang;
+                document.querySelectorAll('.lang-toggle .lang').forEach(span => span.classList.toggle('active', span.dataset.lang === lang));
+                document.querySelectorAll('[data-key]').forEach(element => {
+                    const key = element.dataset.key;
+                    if (translations[lang] && translations[lang][key]) {
+                        element.textContent = translations[lang][key];
+                    } else if (translations['en'][key]) {
+                         element.textContent = translations['en'][key];
+                    }
+                });
+            }
+            document.getElementById('lang-toggle-btn').addEventListener('click', () => setLanguage(currentLang === 'en' ? 'de' : 'en'));
+
+            const heroHeadline = document.querySelector('.hero-headline-wrapper');
+            if(heroHeadline) {
+                const heroWords = heroHeadline.querySelectorAll('span');
+                let heroIndex = 0;
+                setInterval(() => {
+                    const currentWord = heroWords[heroIndex];
+                    const nextIndex = (heroIndex + 1) % heroWords.length;
+                    const nextWord = heroWords[nextIndex];
+                    currentWord.classList.remove('active');
+                    currentWord.classList.add('exit');
+                    setTimeout(() => {
+                        nextWord.classList.add('active');
+                        currentWord.classList.remove('exit');
+                    }, 500);
+                    heroIndex = nextIndex;
+                }, 3000);
+            }
+
+            document.querySelectorAll('.event-card-main').forEach(header => {
+                header.addEventListener('click', () => {
+                    header.closest('.event-card').classList.toggle('expanded');
                 });
             });
-        });
 
-        // Animation on scroll
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
+            document.querySelectorAll('.register-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const card = e.target.closest('.event-card');
+                    const eventTitle = card.querySelector('h3').textContent;
+                    const modal = document.getElementById('registration-modal');
+                    modal.querySelector('#event-title-modal').textContent = eventTitle;
+                    modal.classList.add('active');
+                    document.body.classList.add('modal-open');
+                });
+            });
+
+            document.getElementById('open-embassy-help-modal-btn').addEventListener('click', () => {
+                document.getElementById('embassy-help-modal').classList.add('active');
+                document.body.classList.add('modal-open');
+            });
+            
+            document.querySelectorAll('.close-modal-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    btn.closest('.modal').classList.remove('active');
+                    document.body.classList.remove('modal-open');
+                });
+            });
+
+            document.getElementById('registration-form').addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert('Thank you for registering! A confirmation email has been simulated.');
+                document.getElementById('registration-modal').classList.remove('active');
+                document.body.classList.remove('modal-open');
+            });
+            document.getElementById('embassy-help-form').addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert('Thank you for your request. A board member will review it and get in touch soon.');
+                document.getElementById('embassy-help-modal').classList.remove('active');
+                document.body.classList.remove('modal-open');
+            });
+
+            const viewGalleryBtn = document.getElementById('view-gallery-btn'), galleryModal = document.getElementById('gallery-modal'), galleryPreviewGrid = document.querySelector('.gallery-preview-grid'), fullGalleryGrid = galleryModal.querySelector('.full-gallery-grid'), body = document.body;
+            function openGalleryModal() { 
+                if (galleryModal) { 
+                    fullGalleryGrid.innerHTML = '';
+                    galleryPreviewGrid.querySelectorAll('.gallery-item').forEach(item => {
+                        const clone = item.cloneNode(true);
+                        clone.style.display = 'block';
+                        fullGalleryGrid.appendChild(clone);
+                    });
+                    const activeFilterBtn = galleryModal.querySelector('.gallery-filters .active');
+                    if(activeFilterBtn) activeFilterBtn.classList.remove('active');
+                    galleryModal.querySelector('.gallery-filters [data-filter="all"]').classList.add('active');
+                    galleryModal.classList.add('active'); 
+                    body.classList.add('modal-open'); 
+                } 
+            }
+            viewGalleryBtn.addEventListener('click', openGalleryModal);
+            
+            const filterContainer = document.querySelector('.gallery-filters');
+            if(filterContainer) {
+                filterContainer.addEventListener('click', (e) => {
+                    if(e.target.classList.contains('filter-btn')) {
+                        filterContainer.querySelector('.active').classList.remove('active');
+                        e.target.classList.add('active');
+                        const filterValue = e.target.getAttribute('data-filter');
+                        const modalItems = fullGalleryGrid.querySelectorAll('.gallery-item');
+                        modalItems.forEach(item => {
+                            item.style.display = (item.dataset.category === filterValue || filterValue === 'all') ? 'block' : 'none';
+                        });
+                    }
+                });
+            }
+
+            window.addEventListener('keydown', e => {
+                if (e.key === 'Escape') {
+                    document.querySelectorAll('.modal.active').forEach(modal => {
+                        modal.classList.remove('active');
+                    });
+                    document.body.classList.remove('modal-open');
                 }
             });
-        }, {
-            threshold: 0.1
-        });
 
-        document.querySelectorAll('.animate-on-scroll').forEach(el => {
-            observer.observe(el);
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+            
+            document.getElementById('contact-form').addEventListener('submit', function(e) { e.preventDefault(); alert('This is a demo. In a real application, this form would send an email.'); });
+            
+            setLanguage('en');
         });
     </script>
 </body>
